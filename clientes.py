@@ -1,6 +1,6 @@
 from cliente import Cliente
 
-clientes = []
+clientes = {}
 class Clientes:
     def __init__(self, lista):
         self.lista = lista
