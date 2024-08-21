@@ -46,8 +46,7 @@ def gravarArquivoCliente(conteudo):
     with open('clientes.json', 'w') as clientesVar:
         json.dump(clientes, clientesVar, indent=4)
 
-def aleatorio(testando):
-     testando = testando
-print("Funcionou e eu n sei fzr isso")
+def aleatorio():
+    pass
 
 manipularArquivoCliente()
