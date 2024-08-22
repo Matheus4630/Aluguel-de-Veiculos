@@ -2,15 +2,47 @@ from cliente import Cliente
 
 clientes = {}
 class Clientes:
-    def __init__(self, lista):
-        self.lista = lista
+    def __init__(self):
+        pass
 
     def newCliente(self):
-        nomeTemp = str(input('Nome: '))
-        cpfTemp = str(input('CPF: '))
-        clienteTemp = Cliente(nomeTemp, cpfTemp)
+        nomeTemp = str(input('Nome: ')).lstrip()
+        idadeTemp = str(input('Idade: ')).lstrip()
+        sexoTemp = str(input('Sexo [M/F]: ')).lstrip().upper()
+        cpfTemp = str(input('CPF: ')).lstrip()
+        enderecoTemp = str(input('Endereco: ')).lstrip()
 
-        self.lista.append(clienteTemp)
+
+        clienteTemp = Cliente(nomeTemp, idadeTemp, sexoTemp, cpfTemp, enderecoTemp)
+        print(clienteTemp)
+        clientes[clienteTemp.cpf] = clienteTemp.getCliente()
+        print(clientes.items())
+
+
+
+
+
+
+        # motoristas = Motorista_manipular_arquivo()
+        # motorista = {}
+        # while True:
+        #     CPF = str(input('Digite o CPF: ')).lstrip()
+        #     if Verificar_CPF(CPF):
+        #         motorista['CPF'] = CPF
+        #         break
+        #     else:
+        #         print('CPF já cadastrado!')
+        # motorista['Nome'] = str(input('digite o nome: ')).title().lstrip()
+        # while True:
+        #     carteira = str(input('Digite o tipo de Carteira de motorista: [A/B/AB] ')).upper().lstrip()
+        #     if carteira in 'AB':
+        #         motorista['Carteira'] = carteira
+        #         break
+        #     else:
+        #         print('Digite uma categoria válida!')
+        # motoristas[CPF] = motorista
+        # print('motorista cadastrado com sucesso!')
+        # Motorista_gravar_arquivo(motoristas)
 
     def showClientes(self):
         c = 0
@@ -38,3 +70,5 @@ class Clientes:
         del(self.lista[id])
 
 
+c = Clientes
+c().newCliente()
