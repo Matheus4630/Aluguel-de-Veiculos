@@ -46,3 +46,28 @@ class Veiculos:
         id = int(input('Numero do Veiculo a ser Deletado: '))
         id -= 1
         del (self.lista[id])
+
+    
+def CadastrarVeiculo():
+    ''''''
+    from jsonS import Motorista_manipular_arquivo, Motorista_gravar_arquivo
+    motoristas = Motorista_manipular_arquivo()
+    motorista = {}
+    while True:
+        CPF = str(input('Digite o CPF: ')).lstrip()
+        if Verificar_CPF(CPF):
+            motorista['CPF'] = CPF
+            break
+        else:
+            print('CPF já cadastrado!')
+    motorista['Nome'] = str(input('digite o nome: ')).title().lstrip()
+    while True:
+        carteira = str(input('Digite o tipo de Carteira de motorista: [A/B/AB] ')).upper().lstrip()
+        if carteira in 'AB':
+            motorista['Carteira'] = carteira
+            break
+        else:
+            print('Digite uma categoria válida!')
+    motoristas[CPF] = motorista
+    print('motorista cadastrado com sucesso!')
+    Motorista_gravar_arquivo(motoristas)
