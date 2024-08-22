@@ -1,23 +1,22 @@
 from veiculo import Veiculo
 
-veiculos = []
+veiculos = {}
 class Veiculos:
 
     def __init__(self, lista):
         self.lista = lista
 
-
-    def newVeiculo(self):
+    @staticmethod
+    def newVeiculo():
         marcaTemp = str(input('Marca: '))
         modeloTemp = str(input('Modelo: '))
         versaoTemp = str(input('Versao: '))
         motorTemp = str(input('Motor: '))
         corTemp = str(input('Cor: '))
+        placaTemp = str(input("placa: "))
 
-        veiculoTemp = Veiculo(marcaTemp, modeloTemp, versaoTemp, motorTemp, corTemp)
-
-        self.lista.append(veiculoTemp)
-
+        veiculoTemp = {"Marca":marcaTemp, "Modelo":modeloTemp,"Versao": versaoTemp, "Motor":motorTemp,"Cor":corTemp, "Placa":placaTemp}
+        return veiculoTemp
 
     def showVeiculos(self):
         v = 0
@@ -35,10 +34,11 @@ class Veiculos:
         newVersao = str(input('Versao do Veiculo: '))
         newMotor = str(input('Motor do Veiculo: '))
         newCor = str(input('Cor do Veiculo: '))
+        newPlaca = str(input('Placa do Veiculo: '))
 
         # self.lista[id].setVeiculo(newMarca, newModelo, newVersao, newMotor, newCor)
         temp = self.lista[id]
-        temp.setCliente(newMarca, newModelo, newVersao, newMotor, newCor)
+        temp.setCliente(newMarca, newModelo, newVersao, newMotor, newCor, newPlaca)
 
 
     def delVeiculo(self):
@@ -47,27 +47,17 @@ class Veiculos:
         id -= 1
         del (self.lista[id])
 
+
+    def VerificarPlaca(placa):
+        ''''''
+        from jsonS import manipularArquivoVeiculo
+        veiculos = manipularArquivoVeiculo()
+        validar = True
+        for c in veiculos.keys():
+            if c == placa:  
+                validar = False
+                break  
+        return validar
     
-def CadastrarVeiculo():
-    ''''''
-    from jsonS import Motorista_manipular_arquivo, Motorista_gravar_arquivo
-    motoristas = Motorista_manipular_arquivo()
-    motorista = {}
-    while True:
-        CPF = str(input('Digite o CPF: ')).lstrip()
-        if Verificar_CPF(CPF):
-            motorista['CPF'] = CPF
-            break
-        else:
-            print('CPF já cadastrado!')
-    motorista['Nome'] = str(input('digite o nome: ')).title().lstrip()
-    while True:
-        carteira = str(input('Digite o tipo de Carteira de motorista: [A/B/AB] ')).upper().lstrip()
-        if carteira in 'AB':
-            motorista['Carteira'] = carteira
-            break
-        else:
-            print('Digite uma categoria válida!')
-    motoristas[CPF] = motorista
-    print('motorista cadastrado com sucesso!')
-    Motorista_gravar_arquivo(motoristas)
+novo_veiculo = Veiculos.newVeiculo()
+

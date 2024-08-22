@@ -6,7 +6,7 @@ import json
 def verificarCliente():
     '''verificador da existencia de json para cliente'''
 
-    existencia = exists('clientes.json')
+    existencia = exists('cliente.json')
     return existencia
 
 
@@ -23,7 +23,7 @@ def criarArquivoCliente():
     ''''''
 
     clientes = {}
-    with open('clientes.json', 'w') as clientesVar:
+    with open('clientesjson', 'w') as clientesVar:
         json.dump(clientes, clientesVar, indent=4)
     return clientes
 
@@ -48,3 +48,45 @@ def aleatorio():
     pass
 
 manipularArquivoCliente()
+
+def verificarVeiculos():
+    '''verificador da existencia de json para cliente'''
+
+    existencia = exists('veiculos.json')
+    return existencia
+
+def manipularArquivoVeiculo():
+    '''controlador de acesso json para cliente'''
+    if verificarVeiculos():
+        conteudo = lerArquivosVeiculo()
+    else:
+        conteudo = criarArquivoVeiculo()
+    return conteudo
+
+
+def criarArquivoVeiculo():
+    ''''''
+
+    veiculos = {}
+    with open('veiculos.json', 'w') as veiculosVar:
+        json.dump(veiculos, veiculosVar, indent=4)
+    return veiculos
+
+def lerArquivosVeiculo():
+    ''''''
+
+    veiculos = {}
+    with open('veiculos.json', 'r') as veiculosVar:
+        veiculos = json.load(veiculosVar)
+    return veiculos
+
+
+
+def gravarArquivoVeiculo(conteudo):
+    ''''''
+
+    veiculos = conteudo
+    with open('veiculos.json', 'w') as veiculosVar:
+        json.dump(veiculos, veiculosVar, indent=4)
+
+manipularArquivoVeiculo()
