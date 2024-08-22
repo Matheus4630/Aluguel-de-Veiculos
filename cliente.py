@@ -7,7 +7,7 @@ class Cliente(Pessoa):
         self.endereco = endereco
 
     def getCliente(self):
-        return Cliente(self.nome, self.idade, self.sexo, self.cpf, self.endereco)
+        return self.nome, self.idade, self.sexo, self.cpf, self.endereco
 
     def setCliente(self, nome, idade, sexo, cpf, endereco):
         self.nome = nome
