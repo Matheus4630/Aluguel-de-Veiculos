@@ -1,9 +1,10 @@
+from os.path import exists
+import json
 
 
 
 def verificarCliente():
     '''verificador da existencia de json para cliente'''
-    from os.path import exists
 
     existencia = exists('clientes.json')
     return existencia
@@ -20,7 +21,6 @@ def manipularArquivoCliente():
 
 def criarArquivoCliente():
     ''''''
-    import json
 
     clientes = {}
     with open('clientes.json', 'w') as clientesVar:
@@ -29,7 +29,6 @@ def criarArquivoCliente():
 
 def lerArquivosCliente():
     ''''''
-    import json
 
     clientes = {}
     with open('clientes.json', 'r') as clientesVar:
@@ -40,7 +39,6 @@ def lerArquivosCliente():
 
 def gravarArquivoCliente(conteudo):
     ''''''
-    import json
 
     clientes = conteudo
     with open('clientes.json', 'w') as clientesVar:
