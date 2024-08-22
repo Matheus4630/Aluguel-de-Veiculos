@@ -1,11 +1,14 @@
 from cliente import Cliente
+from jsonS import manipularArquivoCliente, gravarArquivoCliente
 
-clientes = {}
 class Clientes:
     def __init__(self):
         pass
 
     def newCliente(self):
+        clientes = {}
+        clientes = manipularArquivoCliente()
+
         nomeTemp = str(input('Nome: ')).lstrip()
         idadeTemp = str(input('Idade: ')).lstrip()
         sexoTemp = str(input('Sexo [M/F]: ')).lstrip().upper()
@@ -18,8 +21,7 @@ class Clientes:
         clientes[clienteTemp.cpf] = clienteTemp.getCliente()
         print(clientes.items())
 
-
-
+        gravarArquivoCliente(clientes)
 
 
 
