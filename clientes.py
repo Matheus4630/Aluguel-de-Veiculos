@@ -47,18 +47,26 @@ class Clientes:
         # Motorista_gravar_arquivo(motoristas)
 
     def showClientes(self):
+        clientes = {}
+        clientes = manipularArquivoCliente()
         c = 0
-        for cliente in self.lista:
+        for cliente in clientes:
             c = c + 1
             print(f"{c} - {cliente}")
 
 
     def editCliente(self):
+        clientes = {}
+        clientes = manipularArquivoCliente()
         self.showClientes()
+
         id = int(input('Numero do Cliente Que Sera Editado: '))
         id -= 1
         newName = str(input('Nome do Cliente: '))
+        newIdade = float(input('Idade: '))
+        newSexo = str(input('Sexo [M/F]: '))
         newCPF = str(input('Cofirmação de CPF do Cliente: '))
+        newEndereco = str(input('Endereco do Cliente: '))
 
         #self.lista[id].setCliente(newName, newCPF)
         temp = self.lista[id]
