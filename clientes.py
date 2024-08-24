@@ -17,8 +17,8 @@ class Clientes:
 
 
         clienteTemp = Cliente(nomeTemp, idadeTemp, sexoTemp, cpfTemp, enderecoTemp)
-        print(clienteTemp)
-        clientes[clienteTemp.cpf] = clienteTemp.getCliente()
+        print(clienteTemp, clienteTemp.getCliente())
+        clientes[clienteTemp.nome] = clienteTemp.getCliente()
         print(clientes.items())
 
         gravarArquivoCliente(clientes)
