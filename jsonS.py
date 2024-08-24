@@ -6,7 +6,7 @@ import json
 def verificarCliente():
     '''verificador da existencia de json para cliente'''
 
-    existencia = exists('cliente.json')
+    existencia = exists('clientes.json')
     return existencia
 
 
