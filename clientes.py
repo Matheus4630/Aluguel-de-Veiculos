@@ -46,13 +46,16 @@ class Clientes:
         # print('motorista cadastrado com sucesso!')
         # Motorista_gravar_arquivo(motoristas)
 
-    def showClientes(self):
-        clientes = {}
+    def showClientes(self, retorno=0):
         clientes = manipularArquivoCliente()
+
         c = 0
         for cliente in clientes:
             c = c + 1
-            print(f"{c} - {cliente}")
+            if retorno == 0:
+                print(f"{c} - {cliente.keys}")
+            elif retorno == c:
+                return cliente.keys
 
 
     def editCliente(self):
@@ -61,7 +64,9 @@ class Clientes:
         self.showClientes()
 
         id = int(input('Numero do Cliente Que Sera Editado: '))
-        id -= 1
+
+        edit = self.showClientes(id)
+
         newName = str(input('Nome do Cliente: '))
         newIdade = float(input('Idade: '))
         newSexo = str(input('Sexo [M/F]: '))
@@ -74,10 +79,15 @@ class Clientes:
 
 
     def delCliente(self):
+        clientes = manipularArquivoCliente()
         self.showClientes()
+
         id = int(input('Numero do Cliente Que Sera Deletado: '))
-        id -= 1
-        del(self.lista[id])
+        delete = self.showClientes(id)
+
+        show = clientes.pop(delete)
+        gravarArquivoCliente(clientes)
+        print(f"{show} - Removido com Sucesso")
 
 
 c = Clientes
