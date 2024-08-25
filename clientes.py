@@ -5,46 +5,28 @@ class Clientes:
     def __init__(self):
         pass
 
-    def newCliente(self):
-        clientes = {}
+
+    def newCliente(self, lista=None):
         clientes = manipularArquivoCliente()
+
+        if not lista == None:
+            clienteTemp = Cliente(lista[0], lista[1], lista[2], lista[3], lista[4])
+            clientes[clienteTemp.nome] = clienteTemp.getCliente()
+            gravarArquivoCliente(clientes)
+            return
 
         nomeTemp = str(input('Nome: ')).lstrip()
         idadeTemp = str(input('Idade: ')).lstrip()
         sexoTemp = str(input('Sexo [M/F]: ')).lstrip().upper()
         cpfTemp = str(input('CPF: ')).lstrip()
-        enderecoTemp = str(input('Endereco: ')).lstrip()
-
+        enderecoTemp = str(input('Endereço: ')).lstrip()
 
         clienteTemp = Cliente(nomeTemp, idadeTemp, sexoTemp, cpfTemp, enderecoTemp)
-        print(clienteTemp, clienteTemp.getCliente())
         clientes[clienteTemp.nome] = clienteTemp.getCliente()
-        print(clientes.items())
 
         gravarArquivoCliente(clientes)
+        return
 
-
-
-        # motoristas = Motorista_manipular_arquivo()
-        # motorista = {}
-        # while True:
-        #     CPF = str(input('Digite o CPF: ')).lstrip()
-        #     if Verificar_CPF(CPF):
-        #         motorista['CPF'] = CPF
-        #         break
-        #     else:
-        #         print('CPF já cadastrado!')
-        # motorista['Nome'] = str(input('digite o nome: ')).title().lstrip()
-        # while True:
-        #     carteira = str(input('Digite o tipo de Carteira de motorista: [A/B/AB] ')).upper().lstrip()
-        #     if carteira in 'AB':
-        #         motorista['Carteira'] = carteira
-        #         break
-        #     else:
-        #         print('Digite uma categoria válida!')
-        # motoristas[CPF] = motorista
-        # print('motorista cadastrado com sucesso!')
-        # Motorista_gravar_arquivo(motoristas)
 
     def showClientes(self, retorno=0):
         clientes = manipularArquivoCliente()
@@ -53,13 +35,12 @@ class Clientes:
         for cliente in clientes:
             c = c + 1
             if retorno == 0:
-                print(f"{c} - {cliente.keys}")
+                print(f"{c} - {cliente}")
             elif retorno == c:
-                return cliente.keys
+                return cliente
 
 
     def editCliente(self):
-        clientes = {}
         clientes = manipularArquivoCliente()
         self.showClientes()
 
@@ -67,28 +48,51 @@ class Clientes:
 
         edit = self.showClientes(id)
 
-        newName = str(input('Nome do Cliente: '))
-        newIdade = float(input('Idade: '))
+        newName = str(input('Reescreva o Nome do Cliente: '))
+        newIdade = str(input('Idade: '))
         newSexo = str(input('Sexo [M/F]: '))
         newCPF = str(input('Cofirmação de CPF do Cliente: '))
-        newEndereco = str(input('Endereco do Cliente: '))
+        newEndereco = str(input('Endereço do Cliente: '))
 
-        #self.lista[id].setCliente(newName, newCPF)
-        temp = self.lista[id]
-        temp.setCliente(newName, newCPF)
+        listaTemp = [newName, newIdade, newSexo, newCPF, newEndereco]
 
+        if newName != edit:
+            self.delCliente(edit)
+            self.newCliente(listaTemp)
+            return
 
-    def delCliente(self):
-        clientes = manipularArquivoCliente()
-        self.showClientes()
-
-        id = int(input('Numero do Cliente Que Sera Deletado: '))
-        delete = self.showClientes(id)
-
-        show = clientes.pop(delete)
+        clientes[edit] = listaTemp
         gravarArquivoCliente(clientes)
-        print(f"{show} - Removido com Sucesso")
+        return
 
 
-c = Clientes
-c().newCliente()
+    def delCliente(self, nome=''):
+        clientes = manipularArquivoCliente()
+
+        if nome == '':
+            self.showClientes()
+
+            id = int(input('Numero do Cliente Que Sera Deletado: '))
+            delete = self.showClientes(id)
+
+            show = clientes.pop(delete)
+            print(f"{show} - Removido com Sucesso")
+
+        elif nome != '':
+            del clientes[nome]
+            print(f'Indentificador do cliente ({nome}) atualizado, nome anteior não correspondente ao nome atual')
+
+        gravarArquivoCliente(clientes)
+        return
+
+
+
+# c = Clientes
+# c().newCliente()
+# c().newCliente()
+# c().newCliente()
+# c().newCliente()
+# c().editCliente()
+# c().editCliente()
+# c().delCliente()
+# c().showClientes()
