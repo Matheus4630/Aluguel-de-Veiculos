@@ -25,5 +25,3 @@ class Locacao:
 
     def delLocacao(self):
         pass
-
-
