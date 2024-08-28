@@ -136,3 +136,4 @@ def gravarArquivoLocacao(conteudo):
     locacao = conteudo
     with open('locacao.json', 'w') as locacaoVar:
         json.dump(locacao, locacaoVar, indent=4)
+
