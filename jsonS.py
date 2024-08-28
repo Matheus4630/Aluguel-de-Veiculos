@@ -90,3 +90,49 @@ def gravarArquivoVeiculo(conteudo):
         json.dump(veiculos, veiculosVar, indent=4)
 
 # manipularArquivoVeiculo()
+
+
+
+
+
+
+def verificarLocacao():
+    '''verificador da existencia de json para locação'''
+
+    existencia = exists('locacao.json')
+    return existencia
+
+
+def manipularArquivoLocacao():
+    '''controlador de acesso json para locação'''
+    if verificarCliente():
+        conteudo = lerArquivosLocacao()
+    else:
+        conteudo = criarArquivoLocacao()
+    return conteudo
+
+
+def criarArquivoLocacao():
+    ''''''
+
+    locacao = {}
+    with open('locacao.json', 'w') as locacaoVar:
+        json.dump(locacao, locacaoVar, indent=4)
+    return locacao
+
+def lerArquivosLocacao():
+    ''''''
+
+    locacao = {}
+    with open('locacao.json', 'r') as locacaoVar:
+        locacao = json.load(locacaoVar)
+    return locacao
+
+
+
+def gravarArquivoLocacao(conteudo):
+    ''''''
+
+    locacao = conteudo
+    with open('locacao.json', 'w') as locacaoVar:
+        json.dump(locacao, locacaoVar, indent=4)
