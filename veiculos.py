@@ -1,13 +1,22 @@
 from veiculo import Veiculo
+from jsonS import manipularArquivoVeiculo, gravarArquivoVeiculo
 
-veiculos = {}
+
 class Veiculos:
 
-    def __init__(self, lista):
-        self.lista = lista
+    def __init__(self):
+        pass
 
-    @staticmethod
-    def newVeiculo():
+
+    def newVeiculo(self, lista=None):
+        veiculos = manipularArquivoVeiculo()
+
+        if not lista == None:
+            veiculoTemp = Veiculo(lista[0], lista[1], lista[2], lista[3], lista[4], lista[5])
+            veiculos[veiculoTemp.placa] = veiculoTemp.getVeiculo()
+            gravarArquivoVeiculo(veiculos)
+            return
+
         marcaTemp = str(input('Marca: '))
         modeloTemp = str(input('Modelo: '))
         versaoTemp = str(input('Versao: '))
@@ -15,20 +24,32 @@ class Veiculos:
         corTemp = str(input('Cor: '))
         placaTemp = str(input("placa: "))
 
-        veiculoTemp = {"Marca":marcaTemp, "Modelo":modeloTemp,"Versao": versaoTemp, "Motor":motorTemp,"Cor":corTemp, "Placa":placaTemp}
-        return veiculoTemp
+        veiculoTemp = Veiculo(marcaTemp, modeloTemp, versaoTemp, motorTemp, corTemp, placaTemp)
+        veiculos[veiculoTemp.placa] = veiculoTemp.getVeiculo()
 
-    def showVeiculos(self):
+        gravarArquivoVeiculo(veiculos)
+        return
+
+    def showVeiculos(self, retorno=0):
+        veiculos = manipularArquivoVeiculo()
+
         v = 0
-        for cliente in self.lista:
+        for veiculo in veiculos:
             v = v + 1
-            print(f"{v} - {cliente}")
+            if retorno == 0:
+                print(f"{v} - {veiculo}")
+            elif retorno == v:
+                return veiculo
 
 
     def editVeiculo(self):
+        veiculos = manipularArquivoVeiculo()
         self.showVeiculos()
+
         id = int(input('Numero do Veiculo a Ser Editado: '))
-        id -= 1
+
+        edit = self.showVeiculos(id)
+
         newMarca = str(input('Marca do Modelo: '))
         newModelo = str(input('Modelo do Veiculo: '))
         newVersao = str(input('Versao do Veiculo: '))
@@ -36,21 +57,40 @@ class Veiculos:
         newCor = str(input('Cor do Veiculo: '))
         newPlaca = str(input('Placa do Veiculo: '))
 
-        # self.lista[id].setVeiculo(newMarca, newModelo, newVersao, newMotor, newCor)
-        temp = self.lista[id]
-        temp.setCliente(newMarca, newModelo, newVersao, newMotor, newCor, newPlaca)
+        listaTemp = [newMarca, newModelo, newVersao, newMotor, newCor, newPlaca]
+
+        if newPlaca != edit:
+            self.delVeiculo(edit)
+            self.newVeiculo(listaTemp)
+            return
+
+        veiculos[edit] = listaTemp
+        gravarArquivoVeiculo(veiculos)
+        return
 
 
-    def delVeiculo(self):
-        self.showClientes()
-        id = int(input('Numero do Veiculo a ser Deletado: '))
-        id -= 1
-        del (self.lista[id])
+    def delVeiculo(self, placa=""):
+        veiculos = manipularArquivoVeiculo()
+
+        if placa == "":
+            self.showVeiculos()
+
+            id = int(input('Numero do Veiculo a ser Deletado: '))
+            delete = self.showVeiculos(id)
+
+            show = veiculos.pop(delete)
+            print(f"{show} - Removido com Sucesso")
+
+        elif placa != "":
+            del (veiculos[placa])
+            print(f'Indentificador do veiculo ({placa}) atualizado, placa anteior não correspondente a placa atual')
+
+        gravarArquivoVeiculo(veiculos)
+        return
 
 
     def VerificarPlaca(placa):
         ''''''
-        from jsonS import manipularArquivoVeiculo
         veiculos = manipularArquivoVeiculo()
         validar = True
         for c in veiculos.keys():
@@ -58,6 +98,8 @@ class Veiculos:
                 validar = False
                 break  
         return validar
-    
+
+
+
 novo_veiculo = Veiculos.newVeiculo()
 
