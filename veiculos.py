@@ -89,7 +89,7 @@ class Veiculos:
         return
 
 
-    def VerificarPlaca(placa):
+    def VerificarPlaca(self, placa):
         ''''''
         veiculos = manipularArquivoVeiculo()
         validar = True
@@ -101,5 +101,13 @@ class Veiculos:
 
 
 
-novo_veiculo = Veiculos.newVeiculo()
-
+# v = Veiculos
+# v().newVeiculo()
+# v().newVeiculo()
+# v().showVeiculos()
+# v().editVeiculo()
+# v().editVeiculo()
+# v().showVeiculos()
+# v().delVeiculo()
+# v().showVeiculos()
+#
