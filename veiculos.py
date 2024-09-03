@@ -44,7 +44,6 @@ class Veiculos:
 
     def editVeiculo(self):
         veiculos = manipularArquivoVeiculo()
-        veiculos = manipularArquivoVeiculo()
         self.showVeiculos()
 
         id = int(input('Numero do Veiculo a Ser Editado: '))

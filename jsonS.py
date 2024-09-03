@@ -56,7 +56,7 @@ def verificarVeiculos():
     return existencia
 
 def manipularArquivoVeiculo():
-    '''controlador de acesso json para cliente'''
+    '''controlador de acesso json para veiculos'''
     if verificarVeiculos():
         conteudo = lerArquivosVeiculo()
     else:
