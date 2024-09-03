@@ -50,7 +50,7 @@ def aleatorio():
 # manipularArquivoCliente()
 
 def verificarVeiculos():
-    '''verificador da existencia de json para cliente'''
+    '''verificador da existencia de json para veiculo'''
 
     existencia = exists('veiculos.json')
     return existencia
