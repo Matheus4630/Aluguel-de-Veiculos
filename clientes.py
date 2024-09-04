@@ -1,19 +1,17 @@
 from cliente import Cliente
-from jsonS import manipularArquivoCliente, gravarArquivoCliente
+from jsonS import AcessoCliente
 import tkinter
 
-class Clientes:
-    def __init__(self):
-        pass
 
+class Clientes:
 
     def newCliente(self, lista=None):
-        clientes = manipularArquivoCliente()
+        clientes = AcessoCliente().acessarClientes()
 
         if not lista == None:
             clienteTemp = Cliente(lista[0], lista[1], lista[2], lista[3], lista[4])
             clientes[clienteTemp.nome] = clienteTemp.getCliente()
-            gravarArquivoCliente(clientes)
+            AcessoCliente().entradaDadosClientes(clientes)
             return
 
         nomeTemp = str(input('Nome: ')).lstrip()
@@ -25,12 +23,11 @@ class Clientes:
         clienteTemp = Cliente(nomeTemp, idadeTemp, sexoTemp, cpfTemp, enderecoTemp)
         clientes[clienteTemp.nome] = clienteTemp.getCliente()
 
-        gravarArquivoCliente(clientes)
+        AcessoCliente().entradaDadosClientes(clientes)
         return
 
-
     def showClientes(self, retorno=0):
-        clientes = manipularArquivoCliente()
+        clientes = AcessoCliente().acessarClientes()
 
         c = 0
         for cliente in clientes:
@@ -40,9 +37,8 @@ class Clientes:
             elif retorno == c:
                 return cliente
 
-
     def editCliente(self):
-        clientes = manipularArquivoCliente()
+        clientes = AcessoCliente().acessarClientes()
         self.showClientes()
 
         id = int(input('Numero do Cliente Que Sera Editado: '))
@@ -63,12 +59,11 @@ class Clientes:
             return
 
         clientes[edit] = listaTemp
-        gravarArquivoCliente(clientes)
+        AcessoCliente().entradaDadosClientes(clientes)
         return
 
-
     def delCliente(self, nome=''):
-        clientes = manipularArquivoCliente()
+        clientes = AcessoCliente().acessarClientes()
 
         if nome == '':
             self.showClientes()
@@ -83,7 +78,7 @@ class Clientes:
             del clientes[nome]
             print(f'Indentificador do cliente ({nome}) atualizado, nome anteior não correspondente ao nome atual')
 
-        gravarArquivoCliente(clientes)
+        AcessoCliente().entradaDadosClientes(clientes)
         return
 
 

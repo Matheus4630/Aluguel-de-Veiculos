@@ -1,20 +1,16 @@
 from veiculo import Veiculo
-from jsonS import manipularArquivoVeiculo, gravarArquivoVeiculo
+from jsonS import AcessoVeiculo
 
 
 class Veiculos:
 
-    def __init__(self):
-        pass
-
-
     def newVeiculo(self, lista=None):
-        veiculos = manipularArquivoVeiculo()
+        veiculos = AcessoVeiculo().acessarVeiculos()
 
         if not lista == None:
             veiculoTemp = Veiculo(lista[0], lista[1], lista[2], lista[3], lista[4], lista[5])
             veiculos[veiculoTemp.placa] = veiculoTemp.getVeiculo()
-            gravarArquivoVeiculo(veiculos)
+            AcessoVeiculo().entradaDadosVeiculos(veiculos)
             return
 
         marcaTemp = str(input('Marca: '))
@@ -27,11 +23,11 @@ class Veiculos:
         veiculoTemp = Veiculo(marcaTemp, modeloTemp, versaoTemp, motorTemp, corTemp, placaTemp)
         veiculos[veiculoTemp.placa] = veiculoTemp.getVeiculo()
 
-        gravarArquivoVeiculo(veiculos)
+        AcessoVeiculo().entradaDadosVeiculos(veiculos)
         return
 
     def showVeiculos(self, retorno=0):
-        veiculos = manipularArquivoVeiculo()
+        veiculos = AcessoVeiculo().acessarVeiculos()
 
         v = 0
         for veiculo in veiculos:
@@ -41,9 +37,8 @@ class Veiculos:
             elif retorno == v:
                 return veiculo
 
-
     def editVeiculo(self):
-        veiculos = manipularArquivoVeiculo()
+        veiculos = AcessoVeiculo().acessarVeiculos()
         self.showVeiculos()
 
         id = int(input('Numero do Veiculo a Ser Editado: '))
@@ -65,12 +60,11 @@ class Veiculos:
             return
 
         veiculos[edit] = listaTemp
-        gravarArquivoVeiculo(veiculos)
+        AcessoVeiculo().entradaDadosVeiculos(veiculos)
         return
 
-
     def delVeiculo(self, placa=""):
-        veiculos = manipularArquivoVeiculo()
+        veiculos = AcessoVeiculo().acessarVeiculos()
 
         if placa == "":
             self.showVeiculos()
@@ -85,13 +79,12 @@ class Veiculos:
             del (veiculos[placa])
             print(f'Indentificador do veiculo ({placa}) atualizado, placa anteior não correspondente a placa atual')
 
-        gravarArquivoVeiculo(veiculos)
+        AcessoVeiculo().entradaDadosVeiculos(veiculos)
         return
-
 
     def VerificarPlaca(self, placa):
         ''''''
-        veiculos = manipularArquivoVeiculo()
+        veiculos = AcessoVeiculo().acessarVeiculos()
         validar = True
         for c in veiculos.keys():
             if c == placa:  

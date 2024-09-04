@@ -1,19 +1,16 @@
 from clientes import Clientes
 from veiculos import Veiculos
-from jsonS import manipularArquivoLocacao, gravarArquivoLocacao
+from jsonS import AcessoLocacao
 
 
 class Locacao:
 
-    def __init__(self):
-        pass
-
     def newLocacao(self, lista=None):
-        locacaos = manipularArquivoLocacao()
+        locacaos = AcessoLocacao().acessarLocacao()
 
         if not lista == None:
             locacaos[lista[2]] = lista[0], lista[1]
-            gravarArquivoLocacao(locacaos)
+            AcessoLocacao().entradaDadosLocacao(locacaos)
             return
 
         Clientes().showClientes()
@@ -28,12 +25,11 @@ class Locacao:
         data = str(input("quando essa locação ocorrera (dia/mês/ano): "))
         locacaos[data] = cliente, veiculo
 
-        gravarArquivoLocacao(locacaos)
+        AcessoLocacao().entradaDadosLocacao(locacaos)
         return
 
-
     def showLocacao(self, retorno=0):
-        locacaos = manipularArquivoLocacao()
+        locacaos = AcessoLocacao().acessarLocacao()
 
         v = 0
         for locacao in locacaos:
@@ -43,10 +39,8 @@ class Locacao:
             elif retorno == l:
                 return locacao
 
-
-
     def editLocacao(self):
-        locacaos = manipularArquivoLocacao()
+        locacaos = AcessoLocacao().acessarLocacao()
         self.showLocacao()
 
         id = int(input('Numero da Locação a Ser Editada: '))
@@ -72,13 +66,11 @@ class Locacao:
             return
 
         locacaos[edit] = listaTemp
-        gravarArquivoLocacao(locacaos)
+        AcessoLocacao().entradaDadosLocacao(locacaos)
         return
 
-
-
     def delLocacao(self, data=""):
-        locacaos = manipularArquivoLocacao()
+        locacaos = AcessoLocacao().acessarLocacao()
 
         if data == "":
             self.showLocacao()
@@ -93,7 +85,7 @@ class Locacao:
             del (locacaos[data])
             print(f'Data da Locação ({data}) atualizado, data anteior não correspondente a data atual')
 
-        gravarArquivoLocacao(locacaos)
+        AcessoLocacao().entradaDadosLocacao(locacaos)
         return
 
 
