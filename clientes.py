@@ -99,33 +99,6 @@ class Clientes:
 # c().showClientes()
 
 
-janela = tkinter.Tk()
-
-janela.title('Clientes')
-janela.geometry('250x200')
-
-textoExibicao = tkinter.Label(janela, text='Operações de Clientes')
-textoExibicao.grid(column=1, row=0,padx=10, pady=10)
-
-
-botao1 = tkinter.Button(janela, text='Criar', command=Clientes.newCliente)
-botao1.grid(column=0, row=1)
-
-botao2 = tkinter.Button(janela, text='Mostrar', command=Clientes.showClientes)
-botao2.grid(column=0, row=2)
-
-botao3 = tkinter.Button(janela, text='Editar', command=Clientes.editCliente)
-botao3.grid(column=0, row=3)
-
-botao4 = tkinter.Button(janela, text='Deletar', command=Clientes.delCliente)
-botao4.grid(column=0, row=4)
-
-
-textoSaida = tkinter.Label(janela, text='')
-
-
-janela.mainloop()
-
 
 #
 
