@@ -105,7 +105,7 @@ def verificarLocacao():
 
 def manipularArquivoLocacao():
     '''controlador de acesso json para locação'''
-    if verificarCliente():
+    if verificarLocacao():
         conteudo = lerArquivosLocacao()
     else:
         conteudo = criarArquivoLocacao()
@@ -120,6 +120,7 @@ def criarArquivoLocacao():
         json.dump(locacao, locacaoVar, indent=4)
     return locacao
 
+
 def lerArquivosLocacao():
     ''''''
 
@@ -129,11 +130,11 @@ def lerArquivosLocacao():
     return locacao
 
 
-
 def gravarArquivoLocacao(conteudo):
     ''''''
 
     locacao = conteudo
     with open('locacao.json', 'w') as locacaoVar:
         json.dump(locacao, locacaoVar, indent=4)
+
 
