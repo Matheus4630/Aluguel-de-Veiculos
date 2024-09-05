@@ -2,7 +2,6 @@ from os.path import exists
 import json
 
 
-
 class JsonCliente:
 
     def __verificarCliente(self):
@@ -20,7 +19,7 @@ class JsonCliente:
         return conteudo
 
     def __criarArquivoCliente(self):
-        ''''''
+        '''inicializador do json para clientes'''
 
         clientes = {}
         with open('clientes.json', 'w') as clientesVar:
@@ -28,7 +27,7 @@ class JsonCliente:
         return clientes
 
     def __lerArquivosCliente(self):
-        ''''''
+        '''localizador do json para clientes'''
 
         clientes = {}
         with open('clientes.json', 'r') as clientesVar:
@@ -36,7 +35,7 @@ class JsonCliente:
         return clientes
 
     def _gravarArquivoCliente(self, conteudo):
-        ''''''
+        '''inserção de dados no json de clientes'''
 
         clientes = conteudo
         with open('clientes.json', 'w') as clientesVar:
@@ -70,7 +69,7 @@ class JsonVeiculo:
         return conteudo
 
     def __criarArquivoVeiculo(self):
-        ''''''
+        '''inicializador do json para veiculos'''
 
         veiculos = {}
         with open('veiculos.json', 'w') as veiculosVar:
@@ -78,7 +77,7 @@ class JsonVeiculo:
         return veiculos
 
     def __lerArquivosVeiculo(self):
-        ''''''
+        '''localizador do json para veiculos'''
 
         veiculos = {}
         with open('veiculos.json', 'r') as veiculosVar:
@@ -86,7 +85,7 @@ class JsonVeiculo:
         return veiculos
 
     def _gravarArquivoVeiculo(self, conteudo):
-        ''''''
+        '''inserção de dados no json de veiculos'''
 
         veiculos = conteudo
         with open('veiculos.json', 'w') as veiculosVar:
@@ -106,13 +105,13 @@ class AcessoVeiculo(JsonVeiculo):
 class JsonLocacao:
 
     def __verificarLocacao(self):
-        '''verificador da existencia de json para locação'''
+        '''verificador da existencia de json para locações'''
 
         existencia = exists('locacao.json')
         return existencia
 
     def _manipularArquivoLocacao(self):
-        '''controlador de acesso json para locação'''
+        '''controlador de acesso json para locações'''
         if self.__verificarLocacao():
             conteudo = self.__lerArquivosLocacao()
         else:
@@ -120,7 +119,7 @@ class JsonLocacao:
         return conteudo
 
     def __criarArquivoLocacao(self):
-        ''''''
+        '''inicializador do json das locações'''
 
         locacao = {}
         with open('locacao.json', 'w') as locacaoVar:
@@ -128,7 +127,7 @@ class JsonLocacao:
         return locacao
 
     def __lerArquivosLocacao(self):
-        ''''''
+        '''localizador do json de locações'''
 
         locacao = {}
         with open('locacao.json', 'r') as locacaoVar:
@@ -136,7 +135,7 @@ class JsonLocacao:
         return locacao
 
     def _gravarArquivoLocacao(self, conteudo):
-        ''''''
+        '''inserção de dados no json de locações'''
 
         locacao = conteudo
         with open('locacao.json', 'w') as locacaoVar:
