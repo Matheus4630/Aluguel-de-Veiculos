@@ -1,7 +1,7 @@
 import customtkinter
-from clientes import Clientes
+from model.clientes import Clientes
 
-<<<<<<< Updated upstream
+# <<<<<<< Updated upstream
 janelaClientes = customtkinter.CTk()
 
 janelaClientes.title('Clientes')
@@ -23,7 +23,7 @@ botao4 = customtkinter.CTkButton(janelaClientes, text = 'Deletar', command=Clien
 botao4.pack(padx=10, pady=10)
 
 janelaClientes.mainloop()
-=======
+# =======
 class TelaCliente:
     
     janelaC = customtkinter.CTk()
@@ -56,4 +56,4 @@ class TelaVeiculo:
     janelaV.geometry('400x350')
 
 
->>>>>>> Stashed changes
+# >>>>>>> Stashed changes

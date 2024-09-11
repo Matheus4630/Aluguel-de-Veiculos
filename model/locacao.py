@@ -1,4 +1,4 @@
-from clientes import Clientes
+from model.clientes import Clientes
 from veiculos import Veiculos
 from jsonS import AcessoLocacao
 
