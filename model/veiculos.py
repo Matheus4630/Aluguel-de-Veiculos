@@ -95,14 +95,3 @@ class Veiculos:
         return validar
 
 
-
-# v = Veiculos
-# v().newVeiculo()
-# v().newVeiculo()
-# v().showVeiculos()
-# v().editVeiculo()
-# v().editVeiculo()
-# v().showVeiculos()
-# v().delVeiculo()
-# v().showVeiculos()
-#

@@ -91,5 +91,3 @@ class Locacao:
         return
 
 
-# l = Locacao
-# l().newLocacao()

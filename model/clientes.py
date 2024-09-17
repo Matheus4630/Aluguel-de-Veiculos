@@ -85,16 +85,6 @@ class Clientes:
 
 
 
-c = Clientes
-# c().newCliente()
-# c().newCliente()
-# c().newCliente()
-# c().newCliente()
-# c().editCliente()
-# c().editCliente()
-# c().delCliente()
-c().showClientes()
-
 
 
 #

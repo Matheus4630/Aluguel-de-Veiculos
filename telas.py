@@ -891,13 +891,3 @@ telaInicial.mainloop()
 # telaCadastro.mainloop()
 
 
-
-
-
-#
-# tela = customtkinter.CTk()
-# tela.title('Sistema de Testes')
-# frame = Frame1(tela, width=350, height=400)
-# frame.place(x=50, y=25)
-# tela.mainloop()
-#
