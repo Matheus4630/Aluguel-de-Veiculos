@@ -29,13 +29,15 @@ class Veiculos:
     def showVeiculos(self, retorno=0):
         veiculos = AcessoVeiculo().acessarVeiculos()
 
+        listaString = ''
         v = 0
         for veiculo in veiculos:
             v = v + 1
             if retorno == 0:
-                print(f"{v} - {veiculo}")
+                listaString += f"{v} - {veiculo}\n"
             elif retorno == v:
-                return veiculo
+                return veiculo, veiculos[veiculo]
+        return listaString
 
     def editVeiculo(self):
         veiculos = AcessoVeiculo().acessarVeiculos()

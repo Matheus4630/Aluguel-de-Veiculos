@@ -31,13 +31,15 @@ class Locacao:
     def showLocacao(self, retorno=0):
         locacaos = AcessoLocacao().acessarLocacao()
 
+        listaString = ''
         v = 0
         for locacao in locacaos:
             v = v + 1
             if retorno == 0:
-                print(f"{l} - {locacao} - {locacaos[locacao]}")
+                listaString += f"{l} - {locacao} - {locacaos[locacao]}\n"
             elif retorno == l:
-                return locacao
+                return locacao, locacaos[locacao]
+        return listaString
 
     def editLocacao(self):
         locacaos = AcessoLocacao().acessarLocacao()
@@ -89,5 +91,5 @@ class Locacao:
         return
 
 
-l = Locacao
-l().newLocacao()
+# l = Locacao
+# l().newLocacao()

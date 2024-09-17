@@ -29,13 +29,15 @@ class Clientes:
     def showClientes(self, retorno=0):
         clientes = AcessoCliente().acessarClientes()
 
+        listaString = ''
         c = 0
         for cliente in clientes:
             c = c + 1
             if retorno == 0:
-                print(f"{c} - {cliente}")
+                listaString += f"{c} - {cliente} \n"
             elif retorno == c:
-                return cliente
+                return cliente, clientes[cliente]
+        return listaString
 
     def editCliente(self):
         clientes = AcessoCliente().acessarClientes()
@@ -83,7 +85,7 @@ class Clientes:
 
 
 
-# c = Clientes
+c = Clientes
 # c().newCliente()
 # c().newCliente()
 # c().newCliente()
@@ -91,7 +93,7 @@ class Clientes:
 # c().editCliente()
 # c().editCliente()
 # c().delCliente()
-# c().showClientes()
+c().showClientes()
 
 
 
