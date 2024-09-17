@@ -57,3 +57,5 @@ class TelaVeiculo:
 
 
 # >>>>>>> Stashed changes
+#conexão das telas com o banco de dados ---------------
+
