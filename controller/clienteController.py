@@ -24,7 +24,6 @@ def capturarMostrar():
     return DBManager().listarUsuarios()
     
 
-
 def capturarAtualizar(nome, idade, sexo, cpf, endereco):
     DBManager().atualizarUsuario(nome, idade, sexo, cpf, endereco)
 
