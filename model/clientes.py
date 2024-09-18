@@ -1,5 +1,6 @@
 from model.cliente import Cliente
 from jsonS import AcessoCliente
+from database.conexao import DBManager 
 
 
 class Clientes:
@@ -26,8 +27,9 @@ class Clientes:
         return
 
     def showClientes(self, retorno=0):
-        clientes = AcessoCliente().acessarClientes()
-
+        
+        #clientes = AcessoCliente().acessarClientes()
+        clientes = DBManager().listarUsuarios()
         listaString = ''
         c = 0
         for cliente in clientes:

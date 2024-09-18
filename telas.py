@@ -2,8 +2,9 @@ import customtkinter
 from model.clientes import Clientes
 from model.veiculos import Veiculos
 from model.locacao import Locacao
-from controller.clienteController import receberDadosC, capturarMostrar
+from controller.clienteController import receberDadosC, capturarMostrar, JanelaCPFInvalido
 from controller.veiculoController import receberDadosV
+
 
 
 class Frame0(customtkinter.CTkFrame):
@@ -1155,26 +1156,7 @@ class JanelaDelLocacao(customtkinter.CTk):
         self.frameAtual.place(x=65, y=25)
 
 
-class JanelaCPFInvalido(customtkinter.CTk):
-
-    def __init__(self, mestre):
-        super().__init__()
-
-        self.mestre = mestre
-        self.title('CPF Invalido')
-        self.geometry('300x200')
-        self.resizable(width=False, height=False)
-
-        self.label1 = customtkinter.CTkLabel(self, text='CPF Invalido')
-        self.label1.pack(padx=10, pady=10)
-
-        self.button1 = customtkinter.CTkButton(self, width=150, height=40, text='Tentar de Novo', command=self.erroCPF)
-        self.button1.pack(padx=10, pady=10)
-
-    def erroCPF(self):
-        self.mestre.destroy()
-        self.destroy()
-
+##
 
 
 
