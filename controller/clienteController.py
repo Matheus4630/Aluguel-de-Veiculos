@@ -1,3 +1,7 @@
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from database.conexao import DBManager
 from model.validadorCPF import validate
 from telas import JanelaCPFInvalido
@@ -22,6 +26,7 @@ def capturarEnviar(nome, idade, sexo, cpf, endereco):
 
 def capturarMostrar():
     return DBManager().listarUsuarios()
+
     
 
 def capturarAtualizar(nome, idade, sexo, cpf, endereco):
