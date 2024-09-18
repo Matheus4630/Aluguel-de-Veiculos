@@ -9,7 +9,7 @@ class Locacao:
         locacaos = AcessoLocacao().acessarLocacao()
 
         if not lista == None:
-            locacaos[lista[2]] = lista[0], lista[1]
+            locacaos[lista[0]] = lista[0], lista[1], lista[2]
             AcessoLocacao().entradaDadosLocacao(locacaos)
             return
 
@@ -23,7 +23,7 @@ class Locacao:
         veiculo = Veiculos().showVeiculos(V)
 
         data = str(input("quando essa locação ocorrera (dia/mês/ano): "))
-        locacaos[data] = cliente, veiculo
+        locacaos[data] = data, cliente, veiculo
 
         AcessoLocacao().entradaDadosLocacao(locacaos)
         return
@@ -36,7 +36,7 @@ class Locacao:
         for locacao in locacaos:
             l = l + 1
             if retorno == 0:
-                listaString += f"{l} - {locacao} - {locacaos[locacao][0]} - {locacaos[locacao][1]}\n"
+                listaString += f"{l} - {locacao} - {locacaos[locacao][1]} - {locacaos[locacao][2]}\n"
             elif retorno == l:
                 return locacao, locacaos[locacao]
         return listaString
@@ -59,7 +59,7 @@ class Locacao:
         v = int(input('ID do Veiculo desejado: '))
         newVeiculo = Veiculos().showVeiculos(v)
 
-        listaTemp = [newCliente, newVeiculo]
+        listaTemp = [newData, newCliente, newVeiculo]
 
         if newData != edit:
             self.delLocacao(edit)

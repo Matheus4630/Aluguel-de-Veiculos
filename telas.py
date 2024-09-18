@@ -547,7 +547,7 @@ class Frame11(customtkinter.CTkFrame):
         self.entry6.grid(row=12, column=1, padx=10, pady=5)
 
         self.button1 = customtkinter.CTkButton(self, width=150, height=35, text='Atualizar Informações',
-                                               command=self.updateVeiculo())
+                                               command=self.updateVeiculo)
         self.button1.grid(row=13, column=0, padx=15, pady=10)
 
         self.button2 = customtkinter.CTkButton(self, width=100, height=35, text='Cancelar', command=self.master.destroy)
@@ -673,51 +673,178 @@ class Frame15(customtkinter.CTkFrame):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
 
-        self.label1 = customtkinter.CTkLabel(self, text='Data Nova locação')
-        self.label1.grid(row=0, column=1, padx=10, pady=10)
+        self.tituloPrinciopal = customtkinter.CTkLabel(self, text='Lista de Locações')
+        self.tituloPrinciopal.pack(padx=50, pady=5)
 
-        self.label2 = customtkinter.CTkLabel(self, text='Insira a Data: ')
-        self.label2.grid(row=1, column=0, padx=10, pady=15)
+        self.textBox1 = customtkinter.CTkTextbox(self, width=250, height=300)
+        self.textBox1.insert("0.0", Locacao().showLocacao())
+        self.textBox1.configure(state='disabled')
+        self.textBox1.pack(padx=10, pady=10)
 
-        self.entry1 = customtkinter.CTkEntry(self, width=150, height=30, placeholder_text='01/01/1001')
-        self.entry1.grid(row=1, column=1, padx=10, pady=15)
+        self.entry1 = customtkinter.CTkEntry(self, width=250, height=30,
+                                             placeholder_text="Editar Locação:   (Somenete Número  ex: 1)")
+        self.entry1.pack(padx=10, pady=5)
 
-        self.label3 = customtkinter.CTkLabel(self, text='Insira o CPF do Cliente: ')
-        self.label3.grid(row=3, column=0, padx=10, pady=15)
+        self.button1 = customtkinter.CTkButton(self, width=200, height=40, text='Editar Veiculo',
+                                               command=self.buttonEdit)
+        self.button1.pack(padx=10, pady=10)
 
-        self.entry2 = customtkinter.CTkEntry(self, width=150, height=30, placeholder_text='123.456.789-00')
-        self.entry2.grid(row=3, column=1, padx=10, pady=15)
+        self.button2 = customtkinter.CTkButton(self, width=200, height=40, text="Cancelar", command=self.master.destroy)
+        self.button2.pack(padx=10, pady=30)
 
-        self.label4 = customtkinter.CTkLabel(self, text='Insira a Placa do veiculo: ')
-        self.label4.grid(row=5, column=0, padx=10, pady=15)
+    def buttonEdit(self):
+        locacao = int(self.entry1.get().lstrip())
+        self.master.frameAtual.place_forget()
+        self.master.frameAtual = Frame16(self.master, locacao, width=350, height=400)
+        self.master.frameAtual.place(x=25, y=15)
 
-        self.entry3 = customtkinter.CTkEntry(self, width=150, height=30, placeholder_text='ABC-1234')
-        self.entry3.grid(row=5, column=1, padx=10, pady=15)
 
-        self.button1 = customtkinter.CTkButton(self, width=120, height=30, text='Mostrar Clientes',
-                                               command=self.mostrarJanelaCliente)
-        self.button1.grid(row=2, column=1, padx=10, pady=15)
+class Frame16(customtkinter.CTkFrame):
 
-        self.button2 = customtkinter.CTkButton(self, width=120, height=30, text='Mostrar Veiculos',
-                                               command=self.mostrarJanelaVeiculo)
-        self.button2.grid(row=4, column=1, padx=10, pady=15)
+    def __init__(self, master, locacao=0, **kwargs):
+        super().__init__(master, **kwargs)
 
-        self.button3 = customtkinter.CTkButton(self, width=150, height=50, text='Confirmar Locação', command=self.confirmLocacao)
-        self.button3.grid(row=6, column=0, padx=10, pady=25)
+        key, values = Locacao().showLocacao(locacao)
+        self.dadosLocaco = values
 
-        self.button4 = customtkinter.CTkButton(self,  width=150, height=50, text='Cancelar', command=self.master.destroy)
-        self.button4.grid(row=7, column=0, padx=10, pady=25)
+        self.tituloPrincipal = customtkinter.CTkLabel(self, text='Dados da Locação')
+        self.tituloPrincipal.grid(row=0, column=0, padx=20, pady=10)
 
-    def mostrarJanelaCliente(self):
-        janela = JanelaShowCliente()
-        janela.mainloop()
+        self.label1 = customtkinter.CTkLabel(self, text='Data Atual')
+        self.label1.grid(row=1, column=0, padx=10, pady=5)
 
-    def mostrarJanelaVeiculo(self):
-        janela = JanelaShowVeiculo()
-        janela.mainloop()
+        self.textBox1 = customtkinter.CTkTextbox(self, width=150, height=25)
+        self.textBox1.insert("0.0", self.dadosLocaco[0])
+        self.textBox1.configure(state='disabled')
+        self.textBox1.grid(row=1, column=1, padx=10, pady=5)
 
-    def confirmLocacao(self):
+        self.label2 = customtkinter.CTkLabel(self, text='Data da Locação')
+        self.label2.grid(row=2, column=0, padx=10, pady=5)
+
+        self.entry1 = customtkinter.CTkEntry(self, width=150, height=25, placeholder_text="Nova Data: ")
+        self.entry1.grid(row=2, column=1, padx=10, pady=5)
+
+        self.label3 = customtkinter.CTkLabel(self, text='Cliente Atual')
+        self.label3.grid(row=3, column=0, padx=10, pady=5)
+
+        self.textBox2 = customtkinter.CTkTextbox(self, width=150, height=25)
+        self.textBox2.insert("0.0", self.dadosLocaco[1])
+        self.textBox2.configure(state='disabled')
+        self.textBox2.grid(row=3, column=1, padx=10, pady=5)
+
+        self.label4 = customtkinter.CTkLabel(self, text='Cliente Locatario')
+        self.label4.grid(row=4, column=0, padx=10, pady=5)
+
+        self.entry2 = customtkinter.CTkEntry(self, width=150, height=25, placeholder_text="Novo Cliente: ")
+        self.entry2.grid(row=4, column=1, padx=10, pady=5)
+
+        self.label5 = customtkinter.CTkLabel(self, text='Veiculo atual')
+        self.label5.grid(row=5, column=0, padx=10, pady=5)
+
+        self.textBox3 = customtkinter.CTkTextbox(self, width=150, height=25)
+        self.textBox3.insert("0.0", self.dadosLocaco[2])
+        self.textBox3.configure(state='disabled')
+        self.textBox3.grid(row=5, column=1, padx=10, pady=5)
+
+        self.label6 = customtkinter.CTkLabel(self, text='Veiculo Locado')
+        self.label6.grid(row=6, column=0, padx=10, pady=5)
+
+        self.entry3 = customtkinter.CTkEntry(self, width=150, height=25, placeholder_text="Novo Veiculo: ")
+        self.entry3.grid(row=6, column=1, padx=10, pady=5)
+
+        self.button1 = customtkinter.CTkButton(self, width=150, height=35, text='Atualizar Informações',
+                                               command=self.updateLocacao)
+        self.button1.grid(row=13, column=0, padx=15, pady=10)
+
+        self.button2 = customtkinter.CTkButton(self, width=100, height=35, text='Cancelar', command=self.master.destroy)
+        self.button2.grid(row=13, column=1, padx=10, pady=10)
+
+    def updateLocacao(self):
+        newDados1 = self.entry1.get()
+        newDados2 = self.entry2.get()
+        mewDados3 = self.entry3.get()
+
+
+class Frame17(customtkinter.CTkFrame):
+
+    def __init__(self, master, **kwargs):
+        super().__init__(master, **kwargs)
+
+        self.tituloPrinciopal = customtkinter.CTkLabel(self, text='Lista de Locações')
+        self.tituloPrinciopal.pack(padx=50, pady=5)
+
+        self.textBox1 = customtkinter.CTkTextbox(self, width=250, height=300)
+        self.textBox1.insert("0.0", Locacao().showLocacao())
+        self.textBox1.configure(state='disabled')
+        self.textBox1.pack(padx=10, pady=10)
+
+        self.entry1 = customtkinter.CTkEntry(self, width=250, height=30,
+                                             placeholder_text="Apagar Locação:   (Apenas o Número  ex: 1)")
+        self.entry1.pack(padx=10, pady=5)
+
+        self.button1 = customtkinter.CTkButton(self, width=200, height=40, text='Apagar Locação',
+                                               command=self.buttonConfirm)
+        self.button1.pack(padx=10, pady=10)
+
+        self.button2 = customtkinter.CTkButton(self, width=200, height=40, text="Cancelar", command=self.master.destroy)
+        self.button2.pack(padx=10, pady=30)
+
+    def buttonConfirm(self):
+        locacao = int(self.entry1.get().lstrip())
+        self.master.frameAtual.place_forget()
+        self.master.frameAtual = Frame18(self.master, locacao, width=350, height=400)
+        self.master.frameAtual.place(x=25, y=25)
+
+
+class Frame18(customtkinter.CTkFrame):
+
+    def __init__(self, master, locacao=0, **kwargs):
+        super().__init__(master, **kwargs)
+
+        key, values = Locacao().showLocacao(locacao)
+        self.dadosLocacao = values
+
+        self.tituloPrincipal = customtkinter.CTkLabel(self, text='Dados da Locação')
+        self.tituloPrincipal.grid(row=0, column=1, padx=25, pady=10)
+
+        self.label1 = customtkinter.CTkLabel(self, text='Data da Locação')
+        self.label1.grid(row=1, column=0, padx=10, pady=5)
+
+        self.textBox1 = customtkinter.CTkTextbox(self, width=150, height=30)
+        self.textBox1.insert("0.0", self.dadosLocacao[0])
+        self.textBox1.configure(state='disabled')
+        self.textBox1.grid(row=1, column=1, padx=10, pady=5)
+
+        self.label2 = customtkinter.CTkLabel(self, text='Cliente Locatario')
+        self.label2.grid(row=2, column=0, padx=10, pady=5)
+
+        self.textBox2 = customtkinter.CTkTextbox(self, width=150, height=30)
+        self.textBox2.insert("0.0", self.dadosLocacao[1])
+        self.textBox2.configure(state='disabled')
+        self.textBox2.grid(row=2, column=1, padx=10, pady=5)
+
+        self.label3 = customtkinter.CTkLabel(self, text='Veiculo Locatado')
+        self.label3.grid(row=3, column=0, padx=10, pady=5)
+
+        self.textBox3 = customtkinter.CTkTextbox(self, width=150, height=30)
+        self.textBox3.insert("0.0", self.dadosLocacao[2])
+        self.textBox3.configure(state='disabled')
+        self.textBox3.grid(row=3, column=1, padx=10, pady=5)
+
+        self.button1 = customtkinter.CTkButton(self, width=150, height=50, text='Confirmar Locação',
+                                               command=self.deleteLocacao)
+        self.button1.grid(row=8, column=0, padx=15, pady=10)
+
+        self.button2 = customtkinter.CTkButton(self, width=100, height=50, text='Voltar', command=self.cancelLocacao)
+        self.button2.grid(row=9, column=0, padx=10, pady=30)
+
+    def deleteLocacao(self):
         print("Apertou comfirmar!")
+
+    def cancelLocacao(self):
+        self.master.frameAtual.place_forget()
+        self.master.frameAtual = Frame17(self.master, width=350, height=400)
+        self.master.frameAtual.place(x=25, y=25)
 
 
 
@@ -832,33 +959,33 @@ class JanelaNewVeiculo(customtkinter.CTk):
 
         self.label1 = customtkinter.CTkLabel(self, text='Marca')
         self.label1.grid(row=0, column=0, padx=10, pady=10)
-        self.textBox1 = customtkinter.CTkTextbox(self, width=250, height=30)
-        self.textBox1.grid(row=0, column=1, padx=10, pady=10)
+        self.entry1 = customtkinter.CTkEntry(self, width=250, height=30, placeholder_text='Fiat')
+        self.entry1.grid(row=0, column=1, padx=10, pady=10)
 
         self.label2 = customtkinter.CTkLabel(self, text='Modelo')
         self.label2.grid(row=1, column=0, padx=10, pady=10)
-        self.textBox2 = customtkinter.CTkTextbox(self, width=250, height=30)
-        self.textBox2.grid(row=1, column=1, padx=10, pady=10)
+        self.entry2 = customtkinter.CTkEntry(self, width=250, height=30, placeholder_text='Uno Mille')
+        self.entry2.grid(row=1, column=1, padx=10, pady=10)
 
         self.label3 = customtkinter.CTkLabel(self, text='Versao')
         self.label3.grid(row=2, column=0, padx=10, pady=10)
-        self.textBox3 = customtkinter.CTkTextbox(self, width=250, height=30)
-        self.textBox3.grid(row=2, column=1, padx=10, pady=10)
+        self.entry3 = customtkinter.CTkEntry(self, width=250, height=30, placeholder_text='Way')
+        self.entry3.grid(row=2, column=1, padx=10, pady=10)
 
         self.label4 = customtkinter.CTkLabel(self, text='Motor')
         self.label4.grid(row=3, column=0, padx=10, pady=10)
-        self.textBox4 = customtkinter.CTkTextbox(self, width=250, height=30)
-        self.textBox4.grid(row=3, column=1, padx=10, pady=10)
+        self.entry4 = customtkinter.CTkEntry(self, width=250, height=30, placeholder_text='1.4')
+        self.entry4.grid(row=3, column=1, padx=10, pady=10)
 
         self.label5 = customtkinter.CTkLabel(self, text='Cor')
         self.label5.grid(row=4, column=0, padx=10, pady=10)
-        self.textBox5 = customtkinter.CTkTextbox(self, width=250, height=30)
-        self.textBox5.grid(row=4, column=1, padx=10, pady=10)
+        self.entry5 = customtkinter.CTkEntry(self, width=250, height=30, placeholder_text='Cinza')
+        self.entry5.grid(row=4, column=1, padx=10, pady=10)
 
         self.label6 = customtkinter.CTkLabel(self, text='Placa')
         self.label6.grid(row=5, column=0, padx=10, pady=10)
-        self.textBox6 = customtkinter.CTkTextbox(self, width=250, height=30)
-        self.textBox6.grid(row=5, column=1, padx=10, pady=10)
+        self.entry6 = customtkinter.CTkEntry(self, width=250, height=30, placeholder_text='UNO-1234')
+        self.entry6.grid(row=5, column=1, padx=10, pady=10)
 
         self.button1 = customtkinter.CTkButton(self, width=150, height=40, text='Adicionar Novo Veiculo',
                                                command=self.receberDados)
@@ -867,14 +994,14 @@ class JanelaNewVeiculo(customtkinter.CTk):
         self.button2.grid(row=7, column=1, padx=10, pady=50)
 
     def receberDados(self):
-        dados1 = self.textBox1.get("0.0", "end")
-        dados2 = self.textBox2.get("0.0", "end")
-        dados3 = self.textBox3.get("0.0", "end")
-        dados4 = self.textBox4.get("0.0", "end")
-        dados5 = self.textBox5.get("0.0", "end")
-        dados6 = self.textBox6.get("0.0", "end")
+        dados1 = self.entry1.get()
+        dados2 = self.entry2.get()
+        dados3 = self.entry3.get()
+        dados4 = self.entry4.get()
+        dados5 = self.entry5.get()
+        dados6 = self.entry6.get()
         listaDados = [dados1, dados2, dados3, dados4, dados5, dados6]
-        receberDadosV (listaDados)
+        receberDadosV(listaDados)
 
 
 class JanelaShowVeiculo(customtkinter.CTk):
@@ -1015,7 +1142,7 @@ class JanelaEditLocacao(customtkinter.CTk):
         self.geometry('400x600')
         self.resizable(width=False, height=False)
 
-        self.frameAtual = Frame15()
+        self.frameAtual = Frame15(self, width=350, height=400)
         self.frameAtual.place(x=65, y=25)
 
 
@@ -1029,7 +1156,7 @@ class JanelaDelLocacao(customtkinter.CTk):
         self.geometry('400x600')
         self.resizable(width=False, height=False)
 
-        self.frameAtual = Frame15()
+        self.frameAtual = Frame17(self, width=350, height=400)
         self.frameAtual.place(x=65, y=25)
 
 
