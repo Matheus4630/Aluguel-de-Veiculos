@@ -30,13 +30,14 @@ class Locacao:
 
     def showLocacao(self, retorno=0):
         locacaos = AcessoLocacao().acessarLocacao()
+        # locacaos = DBManager().listarUsuarios()
 
         listaString = ''
         l = 0
         for locacao in locacaos:
             l = l + 1
             if retorno == 0:
-                listaString += f"{l} - {locacao} - {locacaos[locacao][1]} - {locacaos[locacao][2]}\n"
+                listaString += f"{l} - {locacao['data']} - {locacao['cliente']} - {locacao['veiculo']}\n"
             elif retorno == l:
                 return locacao, locacaos[locacao]
         return listaString

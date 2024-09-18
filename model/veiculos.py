@@ -28,13 +28,14 @@ class Veiculos:
 
     def showVeiculos(self, retorno=0):
         veiculos = AcessoVeiculo().acessarVeiculos()
+        # veiculos = DBManager().listarUsuarios()
 
         listaString = ''
         v = 0
         for veiculo in veiculos:
             v = v + 1
             if retorno == 0:
-                listaString += f"{v} - {veiculo}\n"
+                listaString += f"{v} - {veiculo['Marca']} - {veiculo['Modelo']} - {veiculo['Versão']}\n"
             elif retorno == v:
                 return veiculo, veiculos[veiculo]
         return listaString

@@ -87,5 +87,5 @@ def gen(originState=None):
 #
 #
 #
-
+print(gen())
 
