@@ -933,10 +933,56 @@ class JanelaNewLocacao(customtkinter.CTk):
         self.geometry('400x600')
         self.resizable(width=False, height=False)
 
-        self.frameAtual = Frame15(self, width=350, height=400)
-        self.frameAtual.place(x=30, y=25)
+        self.label1 = customtkinter.CTkLabel(self, text='Data Nova locação')
+        self.label1.grid(row=0, column=1, padx=10, pady=10)
 
+        self.label2 = customtkinter.CTkLabel(self, text='Insira a Data: ')
+        self.label2.grid(row=1, column=0, padx=10, pady=15)
 
+        self.entry1 = customtkinter.CTkEntry(self, width=150, height=30, placeholder_text='01/01/1001')
+        self.entry1.grid(row=1, column=1, padx=10, pady=15)
+
+        self.label3 = customtkinter.CTkLabel(self, text='Insira o CPF do Cliente: ')
+        self.label3.grid(row=3, column=0, padx=10, pady=15)
+
+        self.entry2 = customtkinter.CTkEntry(self, width=150, height=30, placeholder_text='123.456.789-00')
+        self.entry2.grid(row=3, column=1, padx=10, pady=15)
+
+        self.label4 = customtkinter.CTkLabel(self, text='Insira a Placa do veiculo: ')
+        self.label4.grid(row=5, column=0, padx=10, pady=15)
+
+        self.entry3 = customtkinter.CTkEntry(self, width=150, height=30, placeholder_text='ABC-1234')
+        self.entry3.grid(row=5, column=1, padx=10, pady=15)
+
+        self.button1 = customtkinter.CTkButton(self, width=120, height=30, text='Mostrar Clientes',
+                                               command=self.mostrarJanelaCliente)
+        self.button1.grid(row=2, column=1, padx=10, pady=15)
+
+        self.button2 = customtkinter.CTkButton(self, width=120, height=30, text='Mostrar Veiculos',
+                                               command=self.mostrarJanelaVeiculo)
+        self.button2.grid(row=4, column=1, padx=10, pady=15)
+
+        self.button3 = customtkinter.CTkButton(self, width=150, height=50, text='Confirmar Locação',
+                                               command=self.receberLocacao)
+        self.button3.grid(row=6, column=0, padx=10, pady=25)
+
+        self.button4 = customtkinter.CTkButton(self, width=150, height=50, text='Cancelar', command=self.destroy)
+        self.button4.grid(row=7, column=0, padx=10, pady=25)
+
+    def mostrarJanelaCliente(self):
+        janela = JanelaShowCliente()
+        janela.mainloop()
+
+    def mostrarJanelaVeiculo(self):
+        janela = JanelaShowVeiculo()
+        janela.mainloop()
+
+    def receberLocacao(self):
+        dados1 = self.entry1.get()
+        dados2 = self.entry2.get()
+        dados3 = self.entry3.get()
+        listaDados = [dados1, dados2, dados3]
+        print("Apertou comfirmar!")
 
 
 class JanelaShowLocacao(customtkinter.CTk):
