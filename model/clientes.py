@@ -1,6 +1,5 @@
 from model.cliente import Cliente
 from jsonS import AcessoCliente
-import tkinter
 
 
 class Clientes:
@@ -10,7 +9,7 @@ class Clientes:
 
         if not lista == None:
             clienteTemp = Cliente(lista[0], lista[1], lista[2], lista[3], lista[4])
-            clientes[clienteTemp.nome] = clienteTemp.getCliente()
+            clientes[clienteTemp.cpf] = clienteTemp.getCliente()
             AcessoCliente().entradaDadosClientes(clientes)
             return
 
@@ -21,7 +20,7 @@ class Clientes:
         enderecoTemp = str(input('Endereço: ')).lstrip()
 
         clienteTemp = Cliente(nomeTemp, idadeTemp, sexoTemp, cpfTemp, enderecoTemp)
-        clientes[clienteTemp.nome] = clienteTemp.getCliente()
+        clientes[clienteTemp.cpf] = clienteTemp.getCliente()
 
         AcessoCliente().entradaDadosClientes(clientes)
         return
@@ -43,9 +42,9 @@ class Clientes:
         clientes = AcessoCliente().acessarClientes()
         self.showClientes()
 
-        id = int(input('Numero do Cliente Que Sera Editado: '))
+        numero = int(input('Numero do Cliente Que Sera Editado: '))
 
-        edit = self.showClientes(id)
+        edit, edits = self.showClientes(numero)
 
         newName = str(input('Reescreva o Nome do Cliente: '))
         newIdade = str(input('Idade: '))
@@ -55,7 +54,7 @@ class Clientes:
 
         listaTemp = [newName, newIdade, newSexo, newCPF, newEndereco]
 
-        if newName != edit:
+        if newCPF != edit:
             self.delCliente(edit)
             self.newCliente(listaTemp)
             return
@@ -64,21 +63,21 @@ class Clientes:
         AcessoCliente().entradaDadosClientes(clientes)
         return
 
-    def delCliente(self, nome=''):
+    def delCliente(self, cpf=''):
         clientes = AcessoCliente().acessarClientes()
 
-        if nome == '':
+        if cpf == '':
             self.showClientes()
 
-            id = int(input('Numero do Cliente Que Sera Deletado: '))
-            delete = self.showClientes(id)
+            numero = int(input('Numero do Cliente Que Sera Deletado: '))
+            delete, deletes = self.showClientes(numero)
 
             show = clientes.pop(delete)
             print(f"{show} - Removido com Sucesso")
 
-        elif nome != '':
-            del clientes[nome]
-            print(f'Indentificador do cliente ({nome}) atualizado, nome anteior não correspondente ao nome atual')
+        elif cpf != '':
+            del clientes[cpf]
+            print(f'Indentificador do cliente ({cpf}) atualizado, Indentificador anteior não correspondente ao atual')
 
         AcessoCliente().entradaDadosClientes(clientes)
         return

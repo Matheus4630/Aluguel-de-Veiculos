@@ -32,11 +32,11 @@ class Locacao:
         locacaos = AcessoLocacao().acessarLocacao()
 
         listaString = ''
-        v = 0
+        l = 0
         for locacao in locacaos:
-            v = v + 1
+            l = l + 1
             if retorno == 0:
-                listaString += f"{l} - {locacao} - {locacaos[locacao]}\n"
+                listaString += f"{l} - {locacao} - {locacaos[locacao][0]} - {locacaos[locacao][1]}\n"
             elif retorno == l:
                 return locacao, locacaos[locacao]
         return listaString

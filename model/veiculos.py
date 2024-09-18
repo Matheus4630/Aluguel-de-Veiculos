@@ -43,9 +43,9 @@ class Veiculos:
         veiculos = AcessoVeiculo().acessarVeiculos()
         self.showVeiculos()
 
-        id = int(input('Numero do Veiculo a Ser Editado: '))
+        numero = int(input('Numero do Veiculo a Ser Editado: '))
 
-        edit = self.showVeiculos(id)
+        edit, edits = self.showVeiculos(numero)
 
         newMarca = str(input('Marca do Modelo: '))
         newModelo = str(input('Modelo do Veiculo: '))
@@ -71,8 +71,8 @@ class Veiculos:
         if placa == "":
             self.showVeiculos()
 
-            id = int(input('Numero do Veiculo a ser Deletado: '))
-            delete = self.showVeiculos(id)
+            numero = int(input('Numero do Veiculo a ser Deletado: '))
+            delete, deletes = self.showVeiculos(numero)
 
             show = veiculos.pop(delete)
             print(f"{show} - Removido com Sucesso")

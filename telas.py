@@ -174,16 +174,20 @@ class Frame3(customtkinter.CTkFrame):
         self.botaoSair.pack(padx=75, pady=30)
 
     def buttonNew(self):
-        pass
+        janela = JanelaNewLocacao()
+        janela.mainloop()
 
     def buttonShow(self):
-        pass
+        janela = JanelaShowLocacao()
+        janela.mainloop()
 
     def buttonEdit(self):
-        pass
+        janela = JanelaEditLocacao()
+        janela.mainloop()
 
     def buttonDel(self):
-        pass
+        janela = JanelaDelLocacao()
+        janela.mainloop()
 
     def buttonSair(self):
         self.master.frameAtual.place_forget()
@@ -662,6 +666,22 @@ class Frame13(customtkinter.CTkFrame):
         self.master.frameAtual.place(x=25, y=25)
 
 
+class Frame15(customtkinter.CTkFrame):
+
+    def __init__(self, master, **kwargs):
+        super().__init__(master, **kwargs)
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 class JanelaNewCliente(customtkinter.CTk):
@@ -863,6 +883,64 @@ class JanelaDelVeiculo(customtkinter.CTk):
 
         self.frameAtual = Frame12(self, width=350, height=400)
         self.frameAtual.place(x=65, y=25)
+
+
+class JanelaNewLocacao(customtkinter.CTk):
+
+    def __init__(self):
+        super().__init__()
+
+        self.title('Nova Locacao')
+        self.geometry('400x600')
+        self.resizable(width=False, height=False)
+
+
+
+
+
+
+class JanelaShowLocacao(customtkinter.CTk):
+
+    def __init__(self):
+        super().__init__()
+
+        self.title('Exibir Locações')
+        self.geometry('350x500')
+        self.resizable(width=False, height=False)
+
+        self.label1 = customtkinter.CTkLabel(self, text='Lista Locações')
+        self.label1.pack(padx=10, pady=10)
+
+        self.textBox1 = customtkinter.CTkTextbox(self, width=250, height=300)
+        self.textBox1.insert("0.0", Locacao().showLocacao())
+        self.textBox1.configure(state='disabled')
+        self.textBox1.pack(padx=10, pady=10)
+
+        self.button1 = customtkinter.CTkButton(self, width=150, height=40, text='Voltar', command=self.destroy)
+        self.button1.pack(padx=10, pady=10)
+
+
+class JanelaEditLocacao(customtkinter.CTk):
+
+    def __init__(self):
+        super().__init__()
+
+        self.title('Editar Locacao')
+        self.geometry('400x600')
+        self.resizable(width=False, height=False)
+
+
+
+class JanelaDelLocacao(customtkinter.CTk):
+
+    def __init__(self):
+        super().__init__()
+
+        self.title('Deletar Locacao')
+        self.geometry('400x600')
+        self.resizable(width=False, height=False)
+
+
 
 
 
