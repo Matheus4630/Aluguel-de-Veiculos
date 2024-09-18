@@ -1155,6 +1155,24 @@ class JanelaDelLocacao(customtkinter.CTk):
         self.frameAtual.place(x=65, y=25)
 
 
+class JanelaCPFInvalido(customtkinter.CTk):
+
+    def __init__(self):
+        super().__init__()
+
+        self.title('CPF Invalido')
+        self.geometry('400x600')
+        self.resizable(width=False, height=False)
+
+        self.label1 = customtkinter.CTkLabel(self, text='CPF Invalido')
+        self.label1.pack(padx=10, pady=10)
+
+        self.button1 = customtkinter.CTkButton(self, width=150, height=40, text='Tentar de Novo', command=self.erroCPF)
+
+    def erroCPF(self):
+        pass
+
+
 class JanelaInicial(customtkinter.CTk):
 
     def __init__(self):
