@@ -2,7 +2,7 @@ from database.conexao import DBManager
 from model.validadorCPF import validate
 from telas import JanelaCPFInvalido
 
-def receberDadosC(lista):
+def receberDadosC(lista, mestre):
     lista = lista
 
     if validate(lista[3]):
@@ -13,7 +13,7 @@ def receberDadosC(lista):
         endereco = lista[4]
         capturarEnviar(nome, idade, sexo, cpf, endereco)
     else:
-        janela = JanelaCPFInvalido()
+        janela = JanelaCPFInvalido(mestre)
         janela.mainloop()
 
 def capturarEnviar(nome, idade, sexo, cpf, endereco):
@@ -33,4 +33,4 @@ def capturarDeletar(id):
 
 
 
-DBManager().capturarMostrar()
+# DBManager().capturarMostrar()

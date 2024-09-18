@@ -894,7 +894,7 @@ class JanelaNewCliente(customtkinter.CTk):
         dados4 = self.entry4.get()
         dados5 = self.entry5.get()
         listaDados = [dados1, dados2, dados3, dados4, dados5]
-        receberDadosC(listaDados) 
+        receberDadosC(listaDados, self)
 
 
 class JanelaShowCliente(customtkinter.CTk):
@@ -1157,20 +1157,25 @@ class JanelaDelLocacao(customtkinter.CTk):
 
 class JanelaCPFInvalido(customtkinter.CTk):
 
-    def __init__(self):
+    def __init__(self, mestre):
         super().__init__()
 
+        self.mestre = mestre
         self.title('CPF Invalido')
-        self.geometry('400x600')
+        self.geometry('300x200')
         self.resizable(width=False, height=False)
 
         self.label1 = customtkinter.CTkLabel(self, text='CPF Invalido')
         self.label1.pack(padx=10, pady=10)
 
         self.button1 = customtkinter.CTkButton(self, width=150, height=40, text='Tentar de Novo', command=self.erroCPF)
+        self.button1.pack(padx=10, pady=10)
 
     def erroCPF(self):
-        pass
+        self.mestre.destroy()
+        self.destroy()
+
+
 
 
 class JanelaInicial(customtkinter.CTk):
