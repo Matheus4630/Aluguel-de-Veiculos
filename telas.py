@@ -2,6 +2,8 @@ import customtkinter
 from model.clientes import Clientes
 from model.veiculos import Veiculos
 from model.locacao import Locacao
+from controller.clienteController import receberDadosC
+from controller.veiculoController import receberDadosV
 
 
 class Frame0(customtkinter.CTkFrame):
@@ -731,8 +733,7 @@ class JanelaNewCliente(customtkinter.CTk):
         dados4 = self.entry4.get()
         dados5 = self.entry5.get()
         listaDados = [dados1, dados2, dados3, dados4, dados5]
-        print(listaDados)
-        return listaDados
+        receberDadosC(listaDados) 
 
 
 class JanelaShowCliente(customtkinter.CTk):
@@ -835,7 +836,7 @@ class JanelaNewVeiculo(customtkinter.CTk):
         dados5 = self.textBox5.get("0.0", "end")
         dados6 = self.textBox6.get("0.0", "end")
         listaDados = [dados1, dados2, dados3, dados4, dados5, dados6]
-        return listaDados
+        receberDadosV (listaDados)
 
 
 class JanelaShowVeiculo(customtkinter.CTk):
