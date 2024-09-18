@@ -13,7 +13,7 @@ def receberDadosC(lista, mestre):
         nome = lista[0]
         idade = lista[1]
         sexo = lista[2]
-        cpf = lista [3]
+        cpf = lista[3]
         endereco = lista[4]
         capturarEnviar(nome, idade, sexo, cpf, endereco)
     else:
