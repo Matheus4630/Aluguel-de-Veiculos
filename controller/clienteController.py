@@ -1,3 +1,4 @@
+from database.conexao import DBManager
 
 
 def receberDadosC(lista):
@@ -6,4 +7,23 @@ def receberDadosC(lista):
     idade = lista [1]
     sexo = lista [2]
     cpf = lista [3]
-    endereço = lista [4]
+    endereco = lista [4]
+    capturarEnviar(nome, idade, sexo, cpf, endereco)
+
+def capturarEnviar(nome, idade, sexo, cpf, endereco):
+    DBManager().criarUsuario(nome, idade, sexo, cpf, endereco)
+    
+
+def capturarMostrar():
+    lista = DBManager().listarUsuarios()
+    print(lista)
+    return lista
+
+
+def capturarAtualizar(nome, idade, sexo, cpf, endereco):
+    DBManager().atualizarUsuario(nome, idade, sexo, cpf, endereco)
+
+def capturarDeletar(id):
+    DBManager().deletarUsuario(id)
+
+capturarMostrar()

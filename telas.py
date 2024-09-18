@@ -2,7 +2,7 @@ import customtkinter
 from model.clientes import Clientes
 from model.veiculos import Veiculos
 from model.locacao import Locacao
-from controller.clienteController import receberDadosC
+from controller.clienteController import receberDadosC, capturarMostrar
 from controller.veiculoController import receberDadosV
 
 
@@ -882,7 +882,7 @@ class JanelaNewCliente(customtkinter.CTk):
         self.entry5.grid(row=4, column=1, padx=10, pady=10)
 
         self.button1 = customtkinter.CTkButton(self, width=150, height=40, text='Adicionar Novo Cliente',
-                                               command=self.receberDados)
+                                               command=self.receberDados)#command=capturar_e_enviar
         self.button1.grid(row=6, column=1, padx=10, pady=10)
         self.button2 = customtkinter.CTkButton(self, width=150, height=40, text='Cancelar', command=self.destroy)
         self.button2.grid(row=7, column=1, padx=10, pady=50)

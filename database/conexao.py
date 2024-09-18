@@ -5,12 +5,12 @@ class DBManager:
         conn = psycopg2.connect(
         host="localhost",
         database="aluguelDeCarros",
-        user="posgres",
+        user="postgres",
         password="147885"
         )
         return conn
 
-    def criar_usuario(self,nome, idade, sexo, cpf, endereço):
+    def criarUsuario(self,nome, idade, sexo, cpf, endereço):
         conn = self.conectarBanco()
         cursor = conn.cursor()
         query = "INSERT INTO usuarios (nome, idade, sexo, cpf, endereço) VALUES (%s, %s, %s,%s,%s)"
@@ -19,7 +19,8 @@ class DBManager:
         cursor.close()
         conn.close()
 
-    def listar_usuarios(self,):
+
+    def listarUsuarios(self):
         conn = self.conectarBanco()
         cursor = conn.cursor()
         cursor.execute("SELECT * FROM usuarios")
@@ -28,7 +29,7 @@ class DBManager:
         conn.close()
         return usuarios
         
-    def atualizar_usuario(self,id, novo_nome, novo_email, nova_idade):
+    def atualizarUsuario(self,id, novo_nome, novo_email, nova_idade):
         conn = self.conectarBanco()
         cursor = conn.cursor()
         query = "UPDATE usuarios SET nome = %s, email = %s, idade = %s WHERE id = %s"
@@ -37,7 +38,7 @@ class DBManager:
         cursor.close()
         conn.close()
 
-    def excluir_usuario(self,id):
+    def excluirUsuario(self,id):
         conn = self.conectarBanco()
         cursor = conn.cursor()
         query = "DELETE FROM usuarios WHERE id = %s"
@@ -46,7 +47,7 @@ class DBManager:
         cursor.close()
         conn.close()
 
-    def criar_Veiculo(self,nome, idade, sexo, cpf, endereço):
+    def criarVeiculo(self,nome, idade, sexo, cpf, endereço):
         conn = self.conectarBanco()
         cursor = conn.cursor()
         query = "INSERT INTO usuarios (nome, idade, sexo, cpf, endereço) VALUES (%s, %s, %s,%s,%s)"
@@ -55,7 +56,7 @@ class DBManager:
         cursor.close()
         conn.close()
 
-    def listar_usuarios(self,):
+    def listar_veiculo(self,):
         conn = self.conectarBanco()
         cursor = conn.cursor()
         cursor.execute("SELECT * FROM usuarios")
@@ -64,7 +65,7 @@ class DBManager:
         conn.close()
         return usuarios
         
-    def atualizar_usuario(self,id, novo_nome, novo_email, nova_idade):
+    def atualizar_veiculo(self,id, novo_nome, novo_email, nova_idade):
         conn = self.conectarBanco()
         cursor = conn.cursor()
         query = "UPDATE usuarios SET nome = %s, email = %s, idade = %s WHERE id = %s"
@@ -73,7 +74,7 @@ class DBManager:
         cursor.close()
         conn.close()
 
-    def excluir_usuario(self,id):
+    def excluir_veiculo(self,id):
         conn = self.conectarBanco()
         cursor = conn.cursor()
         query = "DELETE FROM usuarios WHERE id = %s"
