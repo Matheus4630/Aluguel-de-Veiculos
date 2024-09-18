@@ -15,9 +15,8 @@ def capturarEnviar(nome, idade, sexo, cpf, endereco):
     
 
 def capturarMostrar():
-    lista = DBManager().listarUsuarios()
-    print(lista)
-    return lista
+    return DBManager().listarUsuarios()
+    
 
 
 def capturarAtualizar(nome, idade, sexo, cpf, endereco):
@@ -26,4 +25,6 @@ def capturarAtualizar(nome, idade, sexo, cpf, endereco):
 def capturarDeletar(id):
     DBManager().deletarUsuario(id)
 
-capturarMostrar()
+
+
+DBManager().capturarMostrar()

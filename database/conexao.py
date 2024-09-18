@@ -28,6 +28,8 @@ class DBManager:
         cursor.close()
         conn.close()
         return usuarios
+    
+
         
     def atualizarUsuario(self,id, novo_nome, novo_email, nova_idade):
         conn = self.conectarBanco()
@@ -86,3 +88,4 @@ class DBManager:
     def fechar_conexao(self):
         self.cursor.close()
         self.conn.close()
+
