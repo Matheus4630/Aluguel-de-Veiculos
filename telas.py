@@ -6,7 +6,6 @@ from controller.clienteController import receberDadosC, capturarMostrar, JanelaC
 from controller.veiculoController import receberDadosV
 
 
-
 class Frame0(customtkinter.CTkFrame):
 
     def __init__(self, master, **kwargs):

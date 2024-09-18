@@ -35,8 +35,9 @@ class Clientes:
         for cliente in clientes:
             c = c + 1
             if retorno == 0:
-                listaString += f"{c} - {cliente} \n"
+                listaString += f"{c} - {cliente['nome']} - {cliente['idade']} - {cliente['sexo']} \n"
             elif retorno == c:
+                print(cliente, clientes)
                 return cliente, clientes[cliente]
         return listaString
 
