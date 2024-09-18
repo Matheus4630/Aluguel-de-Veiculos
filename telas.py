@@ -412,7 +412,7 @@ class Frame8(customtkinter.CTkFrame):
         self.button2.grid(row=12, column=0, padx=10, pady=30)
 
     def deleteCliente(self):
-        print("Apertou comfirmar!")
+        print("Apertou confirmar!")
 
     def cancelCliente(self):
         self.master.frameAtual.place_forget()
@@ -660,7 +660,7 @@ class Frame13(customtkinter.CTkFrame):
         self.button2.grid(row=9, column=0, padx=10, pady=30)
 
     def deleteVeiculo(self):
-        print("Apertou comfirmar!")
+        print("Apertou confirmar!")
 
     def cancelVeiculo(self):
         self.master.frameAtual.place_forget()
@@ -839,16 +839,12 @@ class Frame18(customtkinter.CTkFrame):
         self.button2.grid(row=9, column=0, padx=10, pady=30)
 
     def deleteLocacao(self):
-        print("Apertou comfirmar!")
+        print("Apertou confirmar!")
 
     def cancelLocacao(self):
         self.master.frameAtual.place_forget()
         self.master.frameAtual = Frame17(self.master, width=350, height=400)
         self.master.frameAtual.place(x=25, y=25)
-
-
-
-
 
 
 class JanelaNewCliente(customtkinter.CTk):
@@ -1109,7 +1105,7 @@ class JanelaNewLocacao(customtkinter.CTk):
         dados2 = self.entry2.get()
         dados3 = self.entry3.get()
         listaDados = [dados1, dados2, dados3]
-        print("Apertou comfirmar!")
+        print("Apertou confirmar!")
 
 
 class JanelaShowLocacao(customtkinter.CTk):
@@ -1146,7 +1142,6 @@ class JanelaEditLocacao(customtkinter.CTk):
         self.frameAtual.place(x=65, y=25)
 
 
-
 class JanelaDelLocacao(customtkinter.CTk):
 
     def __init__(self):
@@ -1158,9 +1153,6 @@ class JanelaDelLocacao(customtkinter.CTk):
 
         self.frameAtual = Frame17(self, width=350, height=400)
         self.frameAtual.place(x=65, y=25)
-
-
-
 
 
 class JanelaInicial(customtkinter.CTk):
