@@ -1159,7 +1159,6 @@ class JanelaDelLocacao(customtkinter.CTk):
 ##
 
 
-
 class JanelaInicial(customtkinter.CTk):
 
     def __init__(self):
