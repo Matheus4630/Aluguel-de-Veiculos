@@ -1,7 +1,8 @@
 #usar as telas aqui
 from database import conexao
-import telas
+from telas import JanelaInicial
 
-dbManager = conexao.DBManager()
-dbManager.conectarBanco()
-telas = telas.JanelaInicial()
+def iniciarProjeto():
+    dbManager = conexao.DBManager()
+    dbManager.conectarBanco()
+    telas = JanelaInicial()
