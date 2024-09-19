@@ -31,6 +31,6 @@ def capturarAtualizarV(id, marca, modelo, versao, motor, cor, placa):
     DBManager().atualizarVeiculo(id, marca, modelo, versao, motor, cor, placa)
 
 def capturarDeletarV(id):
-    DBManager().deletarUsuario(id)
+    DBManager().excluirVeiculo(id)
 
 

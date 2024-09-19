@@ -25,4 +25,4 @@ def capturarAtualizarL(id, data, cliente, veiculo):
     DBManager().atualizarlocacao(id, data, cliente, veiculo)
 
 def capturarDeletarL(id):
-    DBManager().deletarUsuario(id)
+    DBManager().excluirLocacao(id)
