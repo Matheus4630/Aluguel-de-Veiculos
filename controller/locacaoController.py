@@ -13,7 +13,7 @@ def receberDadosL(lista):
     
 
 def capturarEnviar(data, cliente, veiculo):
-    DBManager().newlocacao(data, cliente, veiculo)
+    DBManager().criarLocacao(data, cliente, veiculo)
     
 
 def capturarMostrar():
