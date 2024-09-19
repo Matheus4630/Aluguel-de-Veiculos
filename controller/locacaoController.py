@@ -13,12 +13,12 @@ def receberDadosL(lista):
     
 
 def capturarEnviar(data, cliente, veiculo):
-    DBManager().criarLocacao(data, cliente, veiculo)
+    DBManager().newlocacao(data, cliente, veiculo)
     
 
 def capturarMostrar():
-    print(DBManager().listarVeiculo())
-    return DBManager().listarVeiculo()
+    print(DBManager().showLocacao())
+    return DBManager().showVeiculo()
     
 
 def capturarAtualizarL(id, data, cliente, veiculo):

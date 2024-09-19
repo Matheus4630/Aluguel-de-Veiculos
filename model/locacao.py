@@ -11,7 +11,8 @@ from database.conexao import DBManager
 class Locacao:
 
     def newLocacao(self, lista=None):
-        locacaos = AcessoLocacao().acessarLocacao()
+        #locacaos = AcessoLocacao().acessarLocacao()
+        locacaos = DBManager().listarUsuarios()
 
         if not lista == None:
             locacaos[lista[0]] = lista[0], lista[1], lista[2]
@@ -47,7 +48,7 @@ class Locacao:
                 return locacao, locacaos
         return listaString
 
-    def editLocacao(self):
+    def editarLocacao(self):
         locacaos = AcessoLocacao().acessarLocacao()
         self.showLocacao()
 
@@ -77,8 +78,9 @@ class Locacao:
         AcessoLocacao().entradaDadosLocacao(locacaos)
         return
 
-    def delLocacao(self, data=""):
-        locacaos = AcessoLocacao().acessarLocacao()
+    def deletarLocacao(self, data=""):
+        #locacaos = AcessoLocacao().acessarLocacao()
+        locacaos = DBManager().listarUsuarios()
 
         if data == "":
             self.showLocacao()
