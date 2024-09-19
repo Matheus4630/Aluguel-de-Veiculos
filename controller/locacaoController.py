@@ -6,9 +6,9 @@ from database.conexao import DBManager
 
 def receberDadosL(lista):
     lista = lista
-    data = lista [0]
-    cliente = lista [1]
-    veiculo = lista [2]
+    data = lista[0]
+    cliente = lista[1]
+    veiculo = lista[2]
     capturarEnviar(data, cliente, veiculo)
     
 
@@ -21,8 +21,8 @@ def capturarMostrar():
     return DBManager().listarVeiculo()
     
 
-def capturarAtualizar(data, cliente, veiculo):
-    DBManager().atualizarUsuario(data, cliente, veiculo)
+def capturarAtualizarL(id, data, cliente, veiculo):
+    DBManager().atualizarlocacao(id, data, cliente, veiculo)
 
-def capturarDeletar(id):
+def capturarDeletarL(id):
     DBManager().deletarUsuario(id)

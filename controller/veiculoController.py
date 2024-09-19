@@ -20,17 +20,17 @@ def capturarEnviar(marca, modelo, versao, motor, cor, placa):
     DBManager().criarVeiculo(marca, modelo, versao, motor, cor, placa)
     
 
-def capturarMostrar():
+def capturarMostrarV():
     print(DBManager().listarVeiculo())
     return DBManager().listarVeiculo()
     
 
     
 
-def capturarAtualizar(nome, idade, sexo, cpf, endereco):
-    DBManager().atualizarUsuario(nome, idade, sexo, cpf, endereco)
+def capturarAtualizarV(id, marca, modelo, versao, motor, cor, placa):
+    DBManager().atualizarVeiculo(id, marca, modelo, versao, motor, cor, placa)
 
-def capturarDeletar(id):
+def capturarDeletarV(id):
     DBManager().deletarUsuario(id)
 
 

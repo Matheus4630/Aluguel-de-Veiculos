@@ -2,9 +2,9 @@ import customtkinter
 from model.clientes import Clientes
 from model.veiculos import Veiculos
 from model.locacao import Locacao
-from controller.clienteController import receberDadosC, capturarAtualizar, capturarDeletar
-from controller.veiculoController import receberDadosV
-from controller.locacaoController import receberDadosL
+from controller.clienteController import receberDadosC, capturarAtualizarC, capturarDeletarC
+from controller.veiculoController import receberDadosV, capturarAtualizarV, capturarDeletarV
+from controller.locacaoController import receberDadosL, capturarAtualizarL, capturarDeletarL
 
 
 class Frame0(customtkinter.CTkFrame):
@@ -322,7 +322,8 @@ class Frame6(customtkinter.CTkFrame):
         newDados3 = self.entry3.get()
         newDados4 = self.entry4.get()
         newDados5 = self.entry5.get()
-        capturarAtualizar(self.cliente, newDados1, newDados2, newDados3, newDados4, newDados5)
+        capturarAtualizarC(self.cliente, newDados1, newDados2, newDados3, newDados4, newDados5)
+        self.master.destroy()
 
 
 class Frame7(customtkinter.CTkFrame):
@@ -416,7 +417,8 @@ class Frame8(customtkinter.CTkFrame):
         self.button2.grid(row=12, column=0, padx=10, pady=30)
 
     def deleteCliente(self):
-        capturarDeletar(self.cliente)
+        capturarDeletarC(self.cliente)
+        self.master.destroy()
 
     def cancelCliente(self):
         self.master.frameAtual.place_forget()
@@ -565,7 +567,8 @@ class Frame11(customtkinter.CTkFrame):
         newDados4 = self.entry4.get()
         newDados5 = self.entry5.get()
         newDados6 = self.entry6.get()
-        listaDados = [self.veiculo, newDados1, newDados2, newDados3, newDados4, newDados5, newDados6]
+        capturarAtualizarV(self.veiculo, newDados1, newDados2, newDados3, newDados4, newDados5, newDados6)
+        self.master.destroy()
 
 
 class Frame12(customtkinter.CTkFrame):
@@ -667,7 +670,8 @@ class Frame13(customtkinter.CTkFrame):
         self.button2.grid(row=9, column=0, padx=10, pady=30)
 
     def deleteVeiculo(self):
-        print(self.veiculo)
+        capturarDeletarV(self.veiculo)
+        self.master.destroy()
 
     def cancelVeiculo(self):
         self.master.frameAtual.place_forget()
@@ -692,7 +696,7 @@ class Frame15(customtkinter.CTkFrame):
                                              placeholder_text="Editar Locação:   (Somenete Número  ex: 1)")
         self.entry1.pack(padx=10, pady=5)
 
-        self.button1 = customtkinter.CTkButton(self, width=200, height=40, text='Editar Veiculo',
+        self.button1 = customtkinter.CTkButton(self, width=200, height=40, text='Editar Locação',
                                                command=self.buttonEdit)
         self.button1.pack(padx=10, pady=10)
 
@@ -771,7 +775,8 @@ class Frame16(customtkinter.CTkFrame):
         newDados1 = self.entry1.get()
         newDados2 = self.entry2.get()
         newDados3 = self.entry3.get()
-        listaDados = [self.locacao, newDados1, newDados2, newDados3]
+        capturarAtualizarL(self.locacao, newDados1, newDados2, newDados3)
+        self.master.destroy()
 
 
 class Frame17(customtkinter.CTkFrame):
@@ -849,7 +854,8 @@ class Frame18(customtkinter.CTkFrame):
         self.button2.grid(row=9, column=0, padx=10, pady=30)
 
     def deleteLocacao(self):
-        print(self.locacao)
+        capturarDeletarL(self.locacao)
+        self.master.destroy()
 
     def cancelLocacao(self):
         self.master.frameAtual.place_forget()

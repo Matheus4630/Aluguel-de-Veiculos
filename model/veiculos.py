@@ -38,7 +38,7 @@ class Veiculos:
             v = v + 1
             if retorno == 0:
                 listaString += f"{v} - {veiculo['marca']} - {veiculo['modelo']} - {veiculo['cor']} - {veiculo['placa']}\n"
-            elif retorno == v:
+            elif retorno == veiculo['id']:
                 return veiculo, veiculos
         return listaString
 
