@@ -84,23 +84,44 @@ class DBManager:
         cursor.close()
         conn.close()
 
-    def criarVeiculo(self,nome, idade, sexo, cpf, endereço):
+    def criarVeiculo(self,marca, modelo, versao, motor, cor, placa):
         conn = self.conectarBanco()
         cursor = conn.cursor()
-        query = "INSERT INTO usuarios (nome, idade, sexo, cpf, endereço) VALUES (%s, %s, %s,%s,%s)"
-        cursor.execute(query, (nome, idade, sexo, cpf, endereço))
+        query = "INSERT INTO veiculos (marca, modelo, versao, motor, cor, placa) VALUES (%s, %s, %s,%s,%s, %s)"
+        cursor.execute(query, (marca, modelo, versao, motor, cor, placa))
         conn.commit()
         cursor.close()
         conn.close()
 
-    def listar_veiculo(self,):
+    def listarVeiculo(self):
         conn = self.conectarBanco()
+    
+
+        if conn is None:
+            print("Falha ao conectar ao banco de dados.")
+            return []
+
         cursor = conn.cursor()
-        cursor.execute("SELECT * FROM usuarios")
-        usuarios = cursor.fetchall()
+        cursor.execute("SELECT * FROM veiculos")
+        rows = cursor.fetchall()
+    
         cursor.close()
         conn.close()
-        return usuarios
+        
+        veiculos = []
+        for row in rows:
+            veiculo = {
+            "id": row[0],
+            "marca": row[1],
+            "modelo": row[2],
+            "versao": row[3],
+            "motor": row[4],
+            "cor": row[5],
+            "placa": row[6]
+        }
+            veiculos.append(veiculo)
+
+        return veiculos
         
     def atualizar_veiculo(self,id, novo_nome, novo_email, nova_idade):
         conn = self.conectarBanco()

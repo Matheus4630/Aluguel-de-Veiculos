@@ -998,7 +998,7 @@ class JanelaNewVeiculo(customtkinter.CTk):
         dados5 = self.entry5.get()
         dados6 = self.entry6.get()
         listaDados = [dados1, dados2, dados3, dados4, dados5, dados6]
-        receberDadosV(listaDados)
+        receberDadosV(listaDados, self)
 
 
 class JanelaShowVeiculo(customtkinter.CTk):

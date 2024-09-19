@@ -28,7 +28,6 @@ def capturarMostrar():
     print(DBManager().listarUsuarios())
     return DBManager().listarUsuarios()
     
-
     
 
 def capturarAtualizar(nome, idade, sexo, cpf, endereco):

@@ -1,3 +1,8 @@
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+from database.conexao import DBManager
 
 
 def receberDadosV(lista):
@@ -8,3 +13,24 @@ def receberDadosV(lista):
     motor = lista [3]
     cor = lista [4]
     placa = lista [5]
+    capturarEnviar(marca, modelo, versao, motor, cor, placa)
+    
+
+def capturarEnviar(marca, modelo, versao, motor, cor, placa):
+    DBManager().criarVeiculo(marca, modelo, versao, motor, cor, placa)
+    
+
+def capturarMostrar():
+    print(DBManager().listarVeiculo())
+    return DBManager().listarVeiculo()
+    
+
+    
+
+def capturarAtualizar(nome, idade, sexo, cpf, endereco):
+    DBManager().atualizarUsuario(nome, idade, sexo, cpf, endereco)
+
+def capturarDeletar(id):
+    DBManager().deletarUsuario(id)
+
+
