@@ -2,7 +2,7 @@ import customtkinter
 from model.clientes import Clientes
 from model.veiculos import Veiculos
 from model.locacao import Locacao
-from controller.clienteController import receberDadosC, capturarMostrar, JanelaCPFInvalido
+from controller.clienteController import receberDadosC, capturarAtualizar, capturarDeletar
 from controller.veiculoController import receberDadosV
 from controller.locacaoController import receberDadosL
 
@@ -232,6 +232,7 @@ class Frame6(customtkinter.CTkFrame):
     def __init__(self, master, cliente=0, **kwargs):
         super().__init__(master, **kwargs)
 
+        self.cliente = cliente
         dicionario, lista = Clientes().showClientes(cliente)
         self.dadosCliente = dicionario
 
@@ -309,7 +310,7 @@ class Frame6(customtkinter.CTkFrame):
         self.entry5.grid(row=10, column=1, padx=10, pady=5)
 
         self.button1 = customtkinter.CTkButton(self, width=150, height=50, text='Atualizar Informações',
-                                               command=self.updateCliente())
+                                               command=self.updateCliente(cliente))
         self.button1.grid(row=11, column=0, padx=15, pady=10)
 
         self.button2 = customtkinter.CTkButton(self, width=100, height=50, text='Cancelar', command=self.master.destroy)
@@ -318,9 +319,10 @@ class Frame6(customtkinter.CTkFrame):
     def updateCliente(self):
         newDados1 = self.entry1.get()
         newDados2 = self.entry2.get()
-        mewDados3 = self.entry3.get()
-        mewDados4 = self.entry4.get()
-        mewDados5 = self.entry5.get()
+        newDados3 = self.entry3.get()
+        newDados4 = self.entry4.get()
+        newDados5 = self.entry5.get()
+        capturarAtualizar(self.cliente, newDados1, newDados2, newDados3, newDados4, newDados5)
 
 
 class Frame7(customtkinter.CTkFrame):
@@ -359,6 +361,7 @@ class Frame8(customtkinter.CTkFrame):
     def __init__(self, master, cliente=0, **kwargs):
         super().__init__(master, **kwargs)
 
+        self.cliente = cliente
         dicionario, lista = Clientes().showClientes(cliente)
         self.dadosCliente = dicionario
 
@@ -413,7 +416,7 @@ class Frame8(customtkinter.CTkFrame):
         self.button2.grid(row=12, column=0, padx=10, pady=30)
 
     def deleteCliente(self):
-        print("Apertou confirmar!")
+        capturarDeletar(self.cliente)
 
     def cancelCliente(self):
         self.master.frameAtual.place_forget()
@@ -457,6 +460,7 @@ class Frame11(customtkinter.CTkFrame):
     def __init__(self, master, veiculo=0, **kwargs):
         super().__init__(master, **kwargs)
 
+        self.veiculo = veiculo
         dicionario, lista = Veiculos().showVeiculos(veiculo)
         self.dadosVeiculo = dicionario
 
@@ -557,10 +561,11 @@ class Frame11(customtkinter.CTkFrame):
     def updateVeiculo(self):
         newDados1 = self.entry1.get()
         newDados2 = self.entry2.get()
-        mewDados3 = self.entry3.get()
-        mewDados4 = self.entry4.get()
-        mewDados5 = self.entry5.get()
+        newDados3 = self.entry3.get()
+        newDados4 = self.entry4.get()
+        newDados5 = self.entry5.get()
         newDados6 = self.entry6.get()
+        listaDados = [self.veiculo, newDados1, newDados2, newDados3, newDados4, newDados5, newDados6]
 
 
 class Frame12(customtkinter.CTkFrame):
@@ -599,6 +604,7 @@ class Frame13(customtkinter.CTkFrame):
     def __init__(self, master, veiculo=0, **kwargs):
         super().__init__(master, **kwargs)
 
+        self.veiculo = veiculo
         dicionario, lista = Veiculos().showVeiculos(veiculo)
         self.dadosVeiculo = dicionario
 
@@ -661,7 +667,7 @@ class Frame13(customtkinter.CTkFrame):
         self.button2.grid(row=9, column=0, padx=10, pady=30)
 
     def deleteVeiculo(self):
-        print("Apertou confirmar!")
+        print(self.veiculo)
 
     def cancelVeiculo(self):
         self.master.frameAtual.place_forget()
@@ -705,6 +711,7 @@ class Frame16(customtkinter.CTkFrame):
     def __init__(self, master, locacao=0, **kwargs):
         super().__init__(master, **kwargs)
 
+        self.locacao = locacao
         dicionario, lista = Locacao().showLocacao(locacao)
         self.dadosLocaco = dicionario
 
@@ -763,7 +770,8 @@ class Frame16(customtkinter.CTkFrame):
     def updateLocacao(self):
         newDados1 = self.entry1.get()
         newDados2 = self.entry2.get()
-        mewDados3 = self.entry3.get()
+        newDados3 = self.entry3.get()
+        listaDados = [self.locacao, newDados1, newDados2, newDados3]
 
 
 class Frame17(customtkinter.CTkFrame):
@@ -802,6 +810,7 @@ class Frame18(customtkinter.CTkFrame):
     def __init__(self, master, locacao=0, **kwargs):
         super().__init__(master, **kwargs)
 
+        self.locacao = locacao
         dicionario, lista = Locacao().showLocacao(locacao)
         self.dadosLocacao = dicionario
 
@@ -840,7 +849,7 @@ class Frame18(customtkinter.CTkFrame):
         self.button2.grid(row=9, column=0, padx=10, pady=30)
 
     def deleteLocacao(self):
-        print("Apertou confirmar!")
+        print(self.locacao)
 
     def cancelLocacao(self):
         self.master.frameAtual.place_forget()
@@ -998,7 +1007,7 @@ class JanelaNewVeiculo(customtkinter.CTk):
         dados5 = self.entry5.get()
         dados6 = self.entry6.get()
         listaDados = [dados1, dados2, dados3, dados4, dados5, dados6]
-        receberDadosV(listaDados, self)
+        receberDadosV(listaDados)
 
 
 class JanelaShowVeiculo(customtkinter.CTk):

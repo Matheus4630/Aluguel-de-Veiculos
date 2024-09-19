@@ -30,8 +30,8 @@ def capturarMostrar():
     
     
 
-def capturarAtualizar(nome, idade, sexo, cpf, endereco):
-    DBManager().atualizarUsuario(nome, idade, sexo, cpf, endereco)
+def capturarAtualizar(id, nome, idade, sexo, cpf, endereco):
+    DBManager().atualizarUsuario(id, nome, idade, sexo, cpf, endereco)
 
 def capturarDeletar(id):
     DBManager().deletarUsuario(id)
