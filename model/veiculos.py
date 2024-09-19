@@ -37,7 +37,7 @@ class Veiculos:
             if retorno == 0:
                 listaString += f"{v} - {veiculo['Marca']} - {veiculo['Modelo']} - {veiculo['Versão']}\n"
             elif retorno == v:
-                return veiculo, veiculos[veiculo]
+                return veiculo, veiculos
         return listaString
 
     def editVeiculo(self):

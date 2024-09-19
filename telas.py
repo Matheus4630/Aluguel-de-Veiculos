@@ -4,6 +4,7 @@ from model.veiculos import Veiculos
 from model.locacao import Locacao
 from controller.clienteController import receberDadosC, capturarMostrar, JanelaCPFInvalido
 from controller.veiculoController import receberDadosV
+from controller.locacaoController import receberDadosL
 
 
 class Frame0(customtkinter.CTkFrame):
@@ -231,8 +232,8 @@ class Frame6(customtkinter.CTkFrame):
     def __init__(self, master, cliente=0, **kwargs):
         super().__init__(master, **kwargs)
 
-        key, values = Clientes().showClientes(cliente)
-        self.dadosCliente = values
+        dicionario, lista = Clientes().showClientes(cliente)
+        self.dadosCliente = dicionario
 
         self.tituloPrincipal = customtkinter.CTkLabel(self, text='Dados do Clientes')
         self.tituloPrincipal.grid(row=0, column=0, padx=25, pady=10)
@@ -241,7 +242,7 @@ class Frame6(customtkinter.CTkFrame):
         self.label1.grid(row=1, column=0, padx=10, pady=5)
 
         self.textBox1 = customtkinter.CTkTextbox(self, width=150, height=30)
-        self.textBox1.insert("0.0", self.dadosCliente[0])
+        self.textBox1.insert("0.0", self.dadosCliente['nome'])
         self.textBox1.configure(state='disabled')
         self.textBox1.grid(row=1, column=1, padx=10, pady=5)
 
@@ -255,7 +256,7 @@ class Frame6(customtkinter.CTkFrame):
         self.label3.grid(row=3, column=0, padx=10, pady=5)
 
         self.textBox2 = customtkinter.CTkTextbox(self, width=150, height=30)
-        self.textBox2.insert("0.0", self.dadosCliente[1])
+        self.textBox2.insert("0.0", self.dadosCliente['idade'])
         self.textBox2.configure(state='disabled')
         self.textBox2.grid(row=3, column=1, padx=10, pady=5)
 
@@ -269,7 +270,7 @@ class Frame6(customtkinter.CTkFrame):
         self.label5.grid(row=5, column=0, padx=10, pady=5)
 
         self.textBox3 = customtkinter.CTkTextbox(self, width=150, height=30)
-        self.textBox3.insert("0.0", self.dadosCliente[2])
+        self.textBox3.insert("0.0", self.dadosCliente['sexo'])
         self.textBox3.configure(state='disabled')
         self.textBox3.grid(row=5, column=1, padx=10, pady=5)
 
@@ -283,7 +284,7 @@ class Frame6(customtkinter.CTkFrame):
         self.label7.grid(row=7, column=0, padx=10, pady=5)
 
         self.textBox4 = customtkinter.CTkTextbox(self, width=150, height=30)
-        self.textBox4.insert("0.0", self.dadosCliente[3])
+        self.textBox4.insert("0.0", self.dadosCliente['cpf'])
         self.textBox4.configure(state='disabled')
         self.textBox4.grid(row=7, column=1, padx=10, pady=5)
 
@@ -297,7 +298,7 @@ class Frame6(customtkinter.CTkFrame):
         self.label9.grid(row=9, column=0, padx=10, pady=5)
 
         self.textBox5 = customtkinter.CTkTextbox(self, width=150, height=30)
-        self.textBox5.insert("0.0", self.dadosCliente[4])
+        self.textBox5.insert("0.0", self.dadosCliente['endereco'])
         self.textBox5.configure(state='disabled')
         self.textBox5.grid(row=9, column=1, padx=10, pady=5)
 
@@ -358,8 +359,8 @@ class Frame8(customtkinter.CTkFrame):
     def __init__(self, master, cliente=0, **kwargs):
         super().__init__(master, **kwargs)
 
-        key, values = Clientes().showClientes(cliente)
-        self.dadosCliente = values
+        dicionario, lista = Clientes().showClientes(cliente)
+        self.dadosCliente = dicionario
 
         self.tituloPrincipal = customtkinter.CTkLabel(self, text='Dados do Cliente')
         self.tituloPrincipal.grid(row=0, column=1, padx=25, pady=10)
@@ -368,7 +369,7 @@ class Frame8(customtkinter.CTkFrame):
         self.label1.grid(row=1, column=0, padx=10, pady=5)
 
         self.textBox1 = customtkinter.CTkTextbox(self, width=150, height=30)
-        self.textBox1.insert("0.0", self.dadosCliente[0])
+        self.textBox1.insert("0.0", self.dadosCliente['nome'])
         self.textBox1.configure(state='disabled')
         self.textBox1.grid(row=1, column=1, padx=10, pady=5)
 
@@ -376,7 +377,7 @@ class Frame8(customtkinter.CTkFrame):
         self.label2.grid(row=3, column=0, padx=10, pady=5)
 
         self.textBox2 = customtkinter.CTkTextbox(self, width=150, height=30)
-        self.textBox2.insert("0.0", self.dadosCliente[1])
+        self.textBox2.insert("0.0", self.dadosCliente['idade'])
         self.textBox2.configure(state='disabled')
         self.textBox2.grid(row=3, column=1, padx=10, pady=5)
 
@@ -384,7 +385,7 @@ class Frame8(customtkinter.CTkFrame):
         self.label3.grid(row=5, column=0, padx=10, pady=5)
 
         self.textBox3 = customtkinter.CTkTextbox(self, width=150, height=30)
-        self.textBox3.insert("0.0", self.dadosCliente[2])
+        self.textBox3.insert("0.0", self.dadosCliente['sexo'])
         self.textBox3.configure(state='disabled')
         self.textBox3.grid(row=5, column=1, padx=10, pady=5)
 
@@ -392,7 +393,7 @@ class Frame8(customtkinter.CTkFrame):
         self.label4.grid(row=7, column=0, padx=10, pady=5)
 
         self.textBox4 = customtkinter.CTkTextbox(self, width=150, height=30)
-        self.textBox4.insert("0.0", self.dadosCliente[3])
+        self.textBox4.insert("0.0", self.dadosCliente['cpf'])
         self.textBox4.configure(state='disabled')
         self.textBox4.grid(row=7, column=1, padx=10, pady=5)
 
@@ -400,7 +401,7 @@ class Frame8(customtkinter.CTkFrame):
         self.label5.grid(row=9, column=0, padx=10, pady=5)
 
         self.textBox5 = customtkinter.CTkTextbox(self, width=150, height=30)
-        self.textBox5.insert("0.0", self.dadosCliente[4])
+        self.textBox5.insert("0.0", self.dadosCliente['endereco'])
         self.textBox5.configure(state='disabled')
         self.textBox5.grid(row=9, column=1, padx=10, pady=5)
 
@@ -456,8 +457,8 @@ class Frame11(customtkinter.CTkFrame):
     def __init__(self, master, veiculo=0, **kwargs):
         super().__init__(master, **kwargs)
 
-        key, values = Veiculos().showVeiculos(veiculo)
-        self.dadosVeiculo = values
+        dicionario, lista = Veiculos().showVeiculos(veiculo)
+        self.dadosVeiculo = dicionario
 
         self.tituloPrincipal = customtkinter.CTkLabel(self, text='Dados do Veiculo')
         self.tituloPrincipal.grid(row=0, column=0, padx=20, pady=10)
@@ -466,7 +467,7 @@ class Frame11(customtkinter.CTkFrame):
         self.label1.grid(row=1, column=0, padx=10, pady=5)
 
         self.textBox1 = customtkinter.CTkTextbox(self, width=150, height=25)
-        self.textBox1.insert("0.0", self.dadosVeiculo[0])
+        self.textBox1.insert("0.0", self.dadosVeiculo['marca'])
         self.textBox1.configure(state='disabled')
         self.textBox1.grid(row=1, column=1, padx=10, pady=5)
 
@@ -480,7 +481,7 @@ class Frame11(customtkinter.CTkFrame):
         self.label3.grid(row=3, column=0, padx=10, pady=5)
 
         self.textBox2 = customtkinter.CTkTextbox(self, width=150, height=25)
-        self.textBox2.insert("0.0", self.dadosVeiculo[1])
+        self.textBox2.insert("0.0", self.dadosVeiculo['modelo'])
         self.textBox2.configure(state='disabled')
         self.textBox2.grid(row=3, column=1, padx=10, pady=5)
 
@@ -494,7 +495,7 @@ class Frame11(customtkinter.CTkFrame):
         self.label5.grid(row=5, column=0, padx=10, pady=5)
 
         self.textBox3 = customtkinter.CTkTextbox(self, width=150, height=25)
-        self.textBox3.insert("0.0", self.dadosVeiculo[2])
+        self.textBox3.insert("0.0", self.dadosVeiculo['versao'])
         self.textBox3.configure(state='disabled')
         self.textBox3.grid(row=5, column=1, padx=10, pady=5)
 
@@ -508,7 +509,7 @@ class Frame11(customtkinter.CTkFrame):
         self.label7.grid(row=7, column=0, padx=10, pady=5)
 
         self.textBox4 = customtkinter.CTkTextbox(self, width=150, height=25)
-        self.textBox4.insert("0.0", self.dadosVeiculo[3])
+        self.textBox4.insert("0.0", self.dadosVeiculo['motor'])
         self.textBox4.configure(state='disabled')
         self.textBox4.grid(row=7, column=1, padx=10, pady=5)
 
@@ -522,7 +523,7 @@ class Frame11(customtkinter.CTkFrame):
         self.label9.grid(row=9, column=0, padx=10, pady=5)
 
         self.textBox5 = customtkinter.CTkTextbox(self, width=150, height=25)
-        self.textBox5.insert("0.0", self.dadosVeiculo[4])
+        self.textBox5.insert("0.0", self.dadosVeiculo['cor'])
         self.textBox5.configure(state='disabled')
         self.textBox5.grid(row=9, column=1, padx=10, pady=5)
 
@@ -536,7 +537,7 @@ class Frame11(customtkinter.CTkFrame):
         self.label11.grid(row=11, column=0, padx=10, pady=5)
 
         self.textBox6 = customtkinter.CTkTextbox(self, width=150, height=25)
-        self.textBox6.insert("0.0", self.dadosVeiculo[5])
+        self.textBox6.insert("0.0", self.dadosVeiculo['placa'])
         self.textBox6.configure(state='disabled')
         self.textBox6.grid(row=11, column=1, padx=10, pady=5)
 
@@ -598,8 +599,8 @@ class Frame13(customtkinter.CTkFrame):
     def __init__(self, master, veiculo=0, **kwargs):
         super().__init__(master, **kwargs)
 
-        key, values = Veiculos().showVeiculos(veiculo)
-        self.dadosVeiculo = values
+        dicionario, lista = Veiculos().showVeiculos(veiculo)
+        self.dadosVeiculo = dicionario
 
         self.tituloPrincipal = customtkinter.CTkLabel(self, text='Dados do Veiculo')
         self.tituloPrincipal.grid(row=0, column=1, padx=25, pady=10)
@@ -608,7 +609,7 @@ class Frame13(customtkinter.CTkFrame):
         self.label1.grid(row=1, column=0, padx=10, pady=5)
 
         self.textBox1 = customtkinter.CTkTextbox(self, width=150, height=30)
-        self.textBox1.insert("0.0", self.dadosVeiculo[0])
+        self.textBox1.insert("0.0", self.dadosVeiculo['marca'])
         self.textBox1.configure(state='disabled')
         self.textBox1.grid(row=1, column=1, padx=10, pady=5)
 
@@ -616,7 +617,7 @@ class Frame13(customtkinter.CTkFrame):
         self.label2.grid(row=2, column=0, padx=10, pady=5)
 
         self.textBox2 = customtkinter.CTkTextbox(self, width=150, height=30)
-        self.textBox2.insert("0.0", self.dadosVeiculo[1])
+        self.textBox2.insert("0.0", self.dadosVeiculo['modelo'])
         self.textBox2.configure(state='disabled')
         self.textBox2.grid(row=2, column=1, padx=10, pady=5)
 
@@ -624,7 +625,7 @@ class Frame13(customtkinter.CTkFrame):
         self.label3.grid(row=3, column=0, padx=10, pady=5)
 
         self.textBox3 = customtkinter.CTkTextbox(self, width=150, height=30)
-        self.textBox3.insert("0.0", self.dadosVeiculo[2])
+        self.textBox3.insert("0.0", self.dadosVeiculo['versao'])
         self.textBox3.configure(state='disabled')
         self.textBox3.grid(row=3, column=1, padx=10, pady=5)
 
@@ -632,7 +633,7 @@ class Frame13(customtkinter.CTkFrame):
         self.label4.grid(row=4, column=0, padx=10, pady=5)
 
         self.textBox4 = customtkinter.CTkTextbox(self, width=150, height=30)
-        self.textBox4.insert("0.0", self.dadosVeiculo[3])
+        self.textBox4.insert("0.0", self.dadosVeiculo['motor'])
         self.textBox4.configure(state='disabled')
         self.textBox4.grid(row=4, column=1, padx=10, pady=5)
 
@@ -640,7 +641,7 @@ class Frame13(customtkinter.CTkFrame):
         self.label5.grid(row=5, column=0, padx=10, pady=5)
 
         self.textBox5 = customtkinter.CTkTextbox(self, width=150, height=30)
-        self.textBox5.insert("0.0", self.dadosVeiculo[4])
+        self.textBox5.insert("0.0", self.dadosVeiculo['cor'])
         self.textBox5.configure(state='disabled')
         self.textBox5.grid(row=5, column=1, padx=10, pady=5)
 
@@ -648,7 +649,7 @@ class Frame13(customtkinter.CTkFrame):
         self.label6.grid(row=6, column=0, padx=10, pady=5)
 
         self.textBox6 = customtkinter.CTkTextbox(self, width=150, height=30)
-        self.textBox6.insert("0.0", self.dadosVeiculo[5])
+        self.textBox6.insert("0.0", self.dadosVeiculo['placa'])
         self.textBox6.configure(state='disabled')
         self.textBox6.grid(row=6, column=1, padx=10, pady=5)
 
@@ -704,8 +705,8 @@ class Frame16(customtkinter.CTkFrame):
     def __init__(self, master, locacao=0, **kwargs):
         super().__init__(master, **kwargs)
 
-        key, values = Locacao().showLocacao(locacao)
-        self.dadosLocaco = values
+        dicionario, lista = Locacao().showLocacao(locacao)
+        self.dadosLocaco = dicionario
 
         self.tituloPrincipal = customtkinter.CTkLabel(self, text='Dados da Locação')
         self.tituloPrincipal.grid(row=0, column=0, padx=20, pady=10)
@@ -714,7 +715,7 @@ class Frame16(customtkinter.CTkFrame):
         self.label1.grid(row=1, column=0, padx=10, pady=5)
 
         self.textBox1 = customtkinter.CTkTextbox(self, width=150, height=25)
-        self.textBox1.insert("0.0", self.dadosLocaco[0])
+        self.textBox1.insert("0.0", self.dadosLocaco['data'])
         self.textBox1.configure(state='disabled')
         self.textBox1.grid(row=1, column=1, padx=10, pady=5)
 
@@ -728,7 +729,7 @@ class Frame16(customtkinter.CTkFrame):
         self.label3.grid(row=3, column=0, padx=10, pady=5)
 
         self.textBox2 = customtkinter.CTkTextbox(self, width=150, height=25)
-        self.textBox2.insert("0.0", self.dadosLocaco[1])
+        self.textBox2.insert("0.0", self.dadosLocaco['cliente'])
         self.textBox2.configure(state='disabled')
         self.textBox2.grid(row=3, column=1, padx=10, pady=5)
 
@@ -742,7 +743,7 @@ class Frame16(customtkinter.CTkFrame):
         self.label5.grid(row=5, column=0, padx=10, pady=5)
 
         self.textBox3 = customtkinter.CTkTextbox(self, width=150, height=25)
-        self.textBox3.insert("0.0", self.dadosLocaco[2])
+        self.textBox3.insert("0.0", self.dadosLocaco['veiculo'])
         self.textBox3.configure(state='disabled')
         self.textBox3.grid(row=5, column=1, padx=10, pady=5)
 
@@ -801,8 +802,8 @@ class Frame18(customtkinter.CTkFrame):
     def __init__(self, master, locacao=0, **kwargs):
         super().__init__(master, **kwargs)
 
-        key, values = Locacao().showLocacao(locacao)
-        self.dadosLocacao = values
+        dicionario, lista = Locacao().showLocacao(locacao)
+        self.dadosLocacao = dicionario
 
         self.tituloPrincipal = customtkinter.CTkLabel(self, text='Dados da Locação')
         self.tituloPrincipal.grid(row=0, column=1, padx=25, pady=10)
@@ -811,7 +812,7 @@ class Frame18(customtkinter.CTkFrame):
         self.label1.grid(row=1, column=0, padx=10, pady=5)
 
         self.textBox1 = customtkinter.CTkTextbox(self, width=150, height=30)
-        self.textBox1.insert("0.0", self.dadosLocacao[0])
+        self.textBox1.insert("0.0", self.dadosLocacao['data'])
         self.textBox1.configure(state='disabled')
         self.textBox1.grid(row=1, column=1, padx=10, pady=5)
 
@@ -819,7 +820,7 @@ class Frame18(customtkinter.CTkFrame):
         self.label2.grid(row=2, column=0, padx=10, pady=5)
 
         self.textBox2 = customtkinter.CTkTextbox(self, width=150, height=30)
-        self.textBox2.insert("0.0", self.dadosLocacao[1])
+        self.textBox2.insert("0.0", self.dadosLocacao['cliente'])
         self.textBox2.configure(state='disabled')
         self.textBox2.grid(row=2, column=1, padx=10, pady=5)
 
@@ -827,7 +828,7 @@ class Frame18(customtkinter.CTkFrame):
         self.label3.grid(row=3, column=0, padx=10, pady=5)
 
         self.textBox3 = customtkinter.CTkTextbox(self, width=150, height=30)
-        self.textBox3.insert("0.0", self.dadosLocacao[2])
+        self.textBox3.insert("0.0", self.dadosLocacao['veiculo'])
         self.textBox3.configure(state='disabled')
         self.textBox3.grid(row=3, column=1, padx=10, pady=5)
 
@@ -1105,6 +1106,7 @@ class JanelaNewLocacao(customtkinter.CTk):
         dados2 = self.entry2.get()
         dados3 = self.entry3.get()
         listaDados = [dados1, dados2, dados3]
+        receberDadosL(listaDados)
         print("Apertou confirmar!")
 
 

@@ -39,7 +39,7 @@ class Locacao:
             if retorno == 0:
                 listaString += f"{l} - {locacao['data']} - {locacao['cliente']} - {locacao['veiculo']}\n"
             elif retorno == l:
-                return locacao, locacaos[locacao]
+                return locacao, locacaos
         return listaString
 
     def editLocacao(self):

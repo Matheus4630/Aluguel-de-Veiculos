@@ -38,7 +38,7 @@ class Clientes:
                 listaString += f"{c} - {cliente['nome']} - {cliente['idade']} - {cliente['sexo']} \n"
             elif retorno == c:
                 print(cliente, clientes)
-                return cliente, clientes[cliente]
+                return cliente, clientes
         return listaString
 
     def editCliente(self):
