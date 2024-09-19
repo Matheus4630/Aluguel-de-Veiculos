@@ -17,8 +17,8 @@ def capturarEnviar(data, cliente, veiculo):
     
 
 def capturarMostrar():
-    print(DBManager().showLocacao())
-    return DBManager().showVeiculo()
+    print(DBManager().listarLocacao())
+    return DBManager().listarLocacao()
     
 
 def capturarAtualizarL(id, data, cliente, veiculo):

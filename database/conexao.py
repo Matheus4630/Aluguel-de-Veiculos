@@ -28,7 +28,7 @@ class DBManager:
     def criarUsuario(self,nome, idade, sexo, cpf, endereço):
         conn = self.conectarBanco()
         cursor = conn.cursor()
-        query = "INSERT INTO usuarios (nome, idade, sexo, cpf, endereço) VALUES (%s, %s, %s,%s,%s)"
+        query = "INSERT INTO usuarios (nome, idade, sexo, cpf, endereco) VALUES (%s, %s, %s,%s,%s)"
         cursor.execute(query, (nome, idade, sexo, cpf, endereço))
         conn.commit()
         cursor.close()
@@ -169,12 +169,9 @@ class DBManager:
         for row in rows:
             locacao = {
             "id": row[0],
-            "marca": row[1],
-            "modelo": row[2],
-            "versao": row[3],
-            "motor": row[4],
-            "cor": row[5],
-            "placa": row[6]
+            "data": row[1],
+            "cliente": row[2],
+            "veiculo": row[3],
         }
             locacaos.append(locacao)
 

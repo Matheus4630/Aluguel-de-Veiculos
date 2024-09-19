@@ -36,15 +36,15 @@ class Locacao:
 
     def showLocacao(self, retorno=0):
         #locacaos = AcessoLocacao().acessarLocacao()
-        locacaos = DBManager().listarUsuarios()
+        locacaos = DBManager().listarLocacao()
 
         listaString = ''
         l = 0
         for locacao in locacaos:
             l = l + 1
             if retorno == 0:
-                listaString += f"{l} - {locacao['data']} - {locacao['cliente']} - {locacao['veiculo']}\n"
-            elif retorno == l:
+                listaString += f"{locacao['id']} - {locacao['data']} - {locacao['cliente']} - {locacao['veiculo']}\n"
+            elif retorno == locacao['id']:
                 return locacao, locacaos
         return listaString
 
@@ -80,7 +80,7 @@ class Locacao:
 
     def deletarLocacao(self, data=""):
         #locacaos = AcessoLocacao().acessarLocacao()
-        locacaos = DBManager().listarUsuarios()
+        locacaos = DBManager().listarLocacao()
 
         if data == "":
             self.showLocacao()
