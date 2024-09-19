@@ -135,7 +135,7 @@ class DBManager:
     def excluirVeiculo(self,id):
         conn = self.conectarBanco()
         cursor = conn.cursor()
-        query = "DELETE FROM veiculo WHERE id = %s"
+        query = "DELETE FROM veiculos WHERE id = %s"
         cursor.execute(query, (id,))
         conn.commit()
         cursor.close()
