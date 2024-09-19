@@ -1084,7 +1084,7 @@ class JanelaNewLocacao(customtkinter.CTk):
         self.label3 = customtkinter.CTkLabel(self, text='Insira o ID do Cliente: ')
         self.label3.grid(row=3, column=0, padx=10, pady=15)
 
-        self.entry2 = customtkinter.CTkEntry(self, width=150, height=30, placeholder_text='(1')
+        self.entry2 = customtkinter.CTkEntry(self, width=150, height=30, placeholder_text='(1)')
         self.entry2.grid(row=3, column=1, padx=10, pady=15)
 
         self.label4 = customtkinter.CTkLabel(self, text='Insira o ID do veiculo: ')
