@@ -28,25 +28,16 @@ class Veiculos:
         return
 
     def showVeiculos(self, retorno=0):
-<<<<<<< Updated upstream
-        veiculos = AcessoVeiculo().acessarVeiculos()
-        # veiculos = DBManager().listarUsuarios()
-=======
 
         #veiculos = AcessoVeiculo().acessarVeiculos()
         veiculos = DBManager().listarVeiculo()
->>>>>>> Stashed changes
 
         listaString = ''
         v = 0
         for veiculo in veiculos:
             v = v + 1
             if retorno == 0:
-<<<<<<< Updated upstream
-                listaString += f"{v} - {veiculo['Marca']} - {veiculo['Modelo']} - {veiculo['Versão']}\n"
-=======
                 listaString += f"{v} - {veiculo['marca']} - {veiculo['modelo']} - {veiculo['cor']} - {veiculo['placa']}\n"
->>>>>>> Stashed changes
             elif retorno == v:
                 return veiculo, veiculos
         return listaString

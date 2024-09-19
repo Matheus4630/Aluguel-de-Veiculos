@@ -66,11 +66,11 @@ class DBManager:
     
 
         
-    def atualizarUsuario(self,id, novo_nome, novo_email, nova_idade):
+    def atualizarUsuario(self,id, nome, idade, sexo, cpf, endereço):
         conn = self.conectarBanco()
         cursor = conn.cursor()
-        query = "UPDATE usuarios SET nome = %s, email = %s, idade = %s WHERE id = %s"
-        cursor.execute(query, (novo_nome, novo_email, nova_idade, id))
+        query = "UPDATE usuarios SET nome = %s, idade = %s, sexo = %s, cpf = %s, endereco = %s  WHERE id = %s"
+        cursor.execute(query, (nome, idade, sexo, cpf, endereço, id))
         conn.commit()
         cursor.close()
         conn.close()
@@ -123,7 +123,7 @@ class DBManager:
 
         return veiculos
         
-    def atualizar_veiculo(self,id, novo_nome, novo_email, nova_idade):
+    def atualizarVeiculo(self,id, novo_nome, novo_email, nova_idade):
         conn = self.conectarBanco()
         cursor = conn.cursor()
         query = "UPDATE usuarios SET nome = %s, email = %s, idade = %s WHERE id = %s"
@@ -132,10 +132,10 @@ class DBManager:
         cursor.close()
         conn.close()
 
-    def excluir_veiculo(self,id):
+    def excluirVeiculo(self,id):
         conn = self.conectarBanco()
         cursor = conn.cursor()
-        query = "DELETE FROM usuarios WHERE id = %s"
+        query = "DELETE FROM veiculo WHERE id = %s"
         cursor.execute(query, (id,))
         conn.commit()
         cursor.close()
@@ -147,7 +147,10 @@ class DBManager:
 
         # Chamar a função para buscar dados
 
-#dbManager = DBManager()
+dbManager = DBManager()
 
-# Chamando o método corretamente
+# Chamando o método corretament
 #dbManager.conectarBanco()
+#print(dbManager.listarUsuarios())
+#dbManager.atualizarUsuario(3, 'Joao','15','M','111.111.111-11', 'Rua')
+#print(dbManager.listarUsuarios())
