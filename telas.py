@@ -310,7 +310,7 @@ class Frame6(customtkinter.CTkFrame):
         self.entry5.grid(row=10, column=1, padx=10, pady=5)
 
         self.button1 = customtkinter.CTkButton(self, width=150, height=50, text='Atualizar Informações',
-                                               command=self.updateCliente(cliente))
+                                               command=self.updateCliente)
         self.button1.grid(row=11, column=0, padx=15, pady=10)
 
         self.button2 = customtkinter.CTkButton(self, width=100, height=50, text='Cancelar', command=self.master.destroy)
