@@ -1075,16 +1075,16 @@ class JanelaNewLocacao(customtkinter.CTk):
         self.entry1 = customtkinter.CTkEntry(self, width=150, height=30, placeholder_text='01/01/1001')
         self.entry1.grid(row=1, column=1, padx=10, pady=15)
 
-        self.label3 = customtkinter.CTkLabel(self, text='Insira o CPF do Cliente: ')
+        self.label3 = customtkinter.CTkLabel(self, text='Insira o ID do Cliente: ')
         self.label3.grid(row=3, column=0, padx=10, pady=15)
 
-        self.entry2 = customtkinter.CTkEntry(self, width=150, height=30, placeholder_text='123.456.789-00')
+        self.entry2 = customtkinter.CTkEntry(self, width=150, height=30, placeholder_text='(1')
         self.entry2.grid(row=3, column=1, padx=10, pady=15)
 
-        self.label4 = customtkinter.CTkLabel(self, text='Insira a Placa do veiculo: ')
+        self.label4 = customtkinter.CTkLabel(self, text='Insira o ID do veiculo: ')
         self.label4.grid(row=5, column=0, padx=10, pady=15)
 
-        self.entry3 = customtkinter.CTkEntry(self, width=150, height=30, placeholder_text='ABC-1234')
+        self.entry3 = customtkinter.CTkEntry(self, width=150, height=30, placeholder_text='(1)')
         self.entry3.grid(row=5, column=1, padx=10, pady=15)
 
         self.button1 = customtkinter.CTkButton(self, width=120, height=30, text='Mostrar Clientes',
@@ -1111,9 +1111,11 @@ class JanelaNewLocacao(customtkinter.CTk):
         janela.mainloop()
 
     def receberLocacao(self):
+        clienteID = self.entry2.get()
+        veiculoID = self.entry3.get()
         dados1 = self.entry1.get()
-        dados2 = self.entry2.get()
-        dados3 = self.entry3.get()
+        dados2, lista2 = Clientes().showClientes(clienteID)
+        dados3 = lista3 = Veiculos().showVeiculos(veiculoID)
         listaDados = [dados1, dados2, dados3]
         receberDadosL(listaDados)
         print("Apertou confirmar!")
