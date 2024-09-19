@@ -75,7 +75,7 @@ class DBManager:
         cursor.close()
         conn.close()
 
-    def excluirUsuario(self,id):
+    def deletarUsuario(self,id):
         conn = self.conectarBanco()
         cursor = conn.cursor()
         query = "DELETE FROM usuarios WHERE id = %s"
