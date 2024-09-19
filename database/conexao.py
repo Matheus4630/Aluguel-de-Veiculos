@@ -123,11 +123,11 @@ class DBManager:
 
         return veiculos
         
-    def atualizarVeiculo(self,id, novo_nome, novo_email, nova_idade):
+    def atualizarVeiculo(self,id, marca, modelo, versao, motor, cor, placa):
         conn = self.conectarBanco()
         cursor = conn.cursor()
-        query = "UPDATE usuarios SET nome = %s, email = %s, idade = %s WHERE id = %s"
-        cursor.execute(query, (novo_nome, novo_email, nova_idade, id))
+        query = "UPDATE veiculos SET marca = %s, modelo = %s, versao = %s, motor = %s, cor = %s, placa = %s WHERE id = %s"
+        cursor.execute(query, (marca, modelo, versao, motor, cor, placa, id))
         conn.commit()
         cursor.close()
         conn.close()
@@ -137,6 +137,63 @@ class DBManager:
         cursor = conn.cursor()
         query = "DELETE FROM veiculo WHERE id = %s"
         cursor.execute(query, (id,))
+        conn.commit()
+        cursor.close()
+        conn.close()
+
+    def criarLocacao(self, data, cliente, veiculo):
+        conn = self.conectarBanco()
+        cursor = conn.cursor()
+        query = "INSERT INTO locacaos (data, cliente, veiculo) VALUES (%s, %s, %s)"
+        cursor.execute(query, (data, cliente, veiculo))
+        conn.commit()
+        cursor.close()
+        conn.close()
+
+    def listarLocacao(self):
+        conn = self.conectarBanco()
+    
+
+        if conn is None:
+            print("Falha ao conectar ao banco de dados.")
+            return []
+
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM locacaos")
+        rows = cursor.fetchall()
+    
+        cursor.close()
+        conn.close()
+        
+        locacaos = []
+        for row in rows:
+            locacao = {
+            "id": row[0],
+            "marca": row[1],
+            "modelo": row[2],
+            "versao": row[3],
+            "motor": row[4],
+            "cor": row[5],
+            "placa": row[6]
+        }
+            locacaos.append(locacao)
+
+        return locacaos
+        
+    def atualizarlocacao(self,id, data, cliente, veiculo):
+        conn = self.conectarBanco()
+        cursor = conn.cursor()
+        query = "UPDATE locacaos SET data = %s, cliente = %s, veiculo = %s WHERE id = %s"
+        cursor.execute(query, (data, cliente, veiculo, id))
+        conn.commit()
+        cursor.close()
+        conn.close()
+
+    def excluirLocacao(self,id):
+        conn = self.conectarBanco()
+        cursor = conn.cursor()
+        query = "DELETE FROM locacaos WHERE id = %s"
+        cursor.execute(query, (id))
         conn.commit()
         cursor.close()
         conn.close()

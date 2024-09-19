@@ -1,6 +1,11 @@
 from model.clientes import Clientes
 from model.veiculos import Veiculos
 from jsonS import AcessoLocacao
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+from database.conexao import DBManager
 
 
 class Locacao:
@@ -29,8 +34,8 @@ class Locacao:
         return
 
     def showLocacao(self, retorno=0):
-        locacaos = AcessoLocacao().acessarLocacao()
-        # locacaos = DBManager().listarUsuarios()
+        #locacaos = AcessoLocacao().acessarLocacao()
+        locacaos = DBManager().listarUsuarios()
 
         listaString = ''
         l = 0
