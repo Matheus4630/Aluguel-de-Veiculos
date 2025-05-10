@@ -1197,6 +1197,6 @@ telaInicial.mainloop()
 
 # telaCadastro = JanelaNewCliente()
 
-# telaCadastro.mainloop()
+# telaCadastro.mainloop() #
 
 
